@@ -161,7 +161,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ## 11. Fases del proyecto
 
-> **Fase actual: FASE 0** (actualizar esta línea al cerrar cada fase).
+> **Fase actual: FASE 1** (actualizar esta línea al cerrar cada fase).
 >
 > Reglas: no empezar una fase sin cumplir el "Listo cuando" de la anterior (salvo donde se indique que pueden ir en paralelo). Al cerrar una fase, marcar sus casillas y anotar decisiones/aprendizajes en la sección 14.
 
@@ -318,3 +318,4 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - Hay vista de scoreboard congelado (`score-frozen.html`) aparte.
   - Bolivia en `latam-2026`: 80 equipos.
 
+- 2026-11-20 — Fase 0 — **Fase 0 cerrada.** `pytest` corre y todas las competencias objetivo tienen URL de resultados: regional 2019–2026 y nacional de Bolivia 2022–2026 (12 + 5 filas en `competencias.csv`; formato `boca` hasta 2025 y `moj` en 2026). Pendiente sin bloquear: fuente para los nacionales 2019–2021 y fechas exactas de 2019–2025.
