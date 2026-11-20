@@ -223,8 +223,8 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 **Objetivo:** una tabla lista para ML, sin fuga de información.
 - [ ] `features/build_features.py`: features por persona y por equipo de la sección 7, **calculadas a la fecha de cada competencia**. *(Adelantado en la Fase 3, con aprobación del usuario: `features/universidad.py` con historial de universidad y de equipo. Faltan las features por persona/rating, que dependen de los integrantes.)*
 - [ ] Manejo de cold start (`sin_rating`, valores por defecto).
-- [ ] Target: percentil = posición / n_equipos.
-- [ ] Test anti-fuga: ninguna feature usa datos con fecha ≥ fecha de la competencia.
+- [x] Target: percentil = posición / n_equipos. *(Adelantado: `pct` y `pct_bo` en `features/build_dataset.py`; empates = posición media del bloque.)*
+- [x] Test anti-fuga: ninguna feature usa datos con fecha ≥ fecha de la competencia. *(Adelantado: para las features de universidad/equipo y de CF por universidad; repetir cuando haya features por persona.)*
 - [ ] Notebook de exploración (distribuciones, correlación rating vs posición).
 
 **Entregable:** `data/dataset.parquet` (una fila por equipo-competencia).
@@ -232,9 +232,9 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 6 — Baseline y marco de evaluación
 **Objetivo:** saber qué tan bien se puede predecir sin ML.
-- [ ] `models/evaluate.py`: split temporal (train ≤ 2025, test 2026), métricas Spearman, Kendall tau, NDCG@10, acierto top-k.
-- [ ] `models/baseline.py`: ranking por rating máximo CF del equipo (y variante por promedio).
-- [ ] Reporte de resultados en `reports/fase6_baseline.md`.
+- [x] `models/evaluate.py`: split temporal (train ≤ 2025, test 2026), métricas Spearman, Kendall tau, NDCG@10, acierto top-k. *(Adelantado: además backtest 2023–2026; se evalúa el orden de los equipos bolivianos.)*
+- [ ] `models/baseline.py`: ranking por rating máximo CF del equipo (y variante por promedio). *(Sin integrantes no es posible; sustitutos: historial de universidad, equipo previo y rating CF de la universidad.)*
+- [x] Reporte de resultados en `reports/fase6_baseline.md`. *(Adelantado.)*
 
 **Entregable:** métricas del baseline.
 **Listo cuando:** existe un comando único que evalúa cualquier modelo con el mismo split y métricas.
@@ -358,3 +358,14 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - Universidad normalizada a la sigla base (sin sede): `UCB-Cochabamba` → `UCB`, `UPBLP`/`UPB - Cbba` → `UPB`, `UV-La Paz`/`Univalle Scz` → `UNIVALLE`. Se pierde la distinción entre sedes a cambio de más historial. 71 equipos bolivianos no tienen universidad.
   - "Mismo equipo" = mismo nombre normalizado + misma universidad. Los equipos suelen conservar el nombre entre el nacional y la regional y entre años.
   - Señal en equipos bolivianos (Spearman con el percentil real, más bajo = mejor): `eq_pct_previo` +0.70 en la regional / +0.48 en el nacional (pero solo 33 % de equipos tienen dato); historial de la universidad (`uni_media_pct_3a_*`, `uni_mejor_pct_*`) entre +0.38 y +0.54 (80 % con dato). Son candidatos fuertes para el baseline junto al rating.
+- 2026-11-20 — Fase 3 — **Adelantado de las Fases 5 y 6 (el usuario no tiene datos de integrantes y pidió "lo óptimo"):** modelo completo sin integrantes, para saber cuánto se predice sin ellos.
+  - `features/universidad_cf.py`: fuerza en CF de la universidad a la fecha (usuarios activos en 12 meses, rating máximo y media de los 3 mejores entre activos en 24 meses). Organización del perfil → sigla con patrones; 159 de 366 usuarios mapeados. Riesgo de fuga leve: la organización es la actual del perfil.
+  - `features/build_dataset.py` → `data/dataset.parquet` (4.052 filas, 1.287 bolivianas). Target principal `pct_bo`: percentil entre los equipos bolivianos de la competencia, con empates promediados.
+  - `models/evaluate.py` + `models/baseline.py` + `models/modelos.py` → `reports/fase6_baseline.md`. Test 2026 y backtest 2023–2026.
+  - **Resultados (Spearman, equipos bolivianos):**
+    - Nacional 2026: historial de universidad 0.49, Ridge 0.47, equipo previo 0.46, LightGBM 0.45, rating CF de la universidad 0.45, azar 0.01. Backtest: los cuatro entre 0.44 y 0.52.
+    - Regional 2026: equipo previo 0.69, Ridge 0.67, LightGBM 0.66 (top 10: 9/10), historial de universidad 0.54. Backtest: equipo previo 0.67, Ridge 0.62, LightGBM 0.60.
+    - Con estas features los modelos de ML **no superan** a las heurísticas simples: la información útil está concentrada en 1–2 variables. El techo sin integrantes ronda Spearman ≈ 0.5 en el nacional y ≈ 0.7 en la regional (donde el resultado del mismo equipo en el nacional de ese año ya anticipa mucho).
+    - Lo que más falta en el nacional son features del propio equipo (integrantes/ratings): ~2/3 de los equipos no tienen historial con el mismo nombre.
+  - Hiperparámetros fijos y conservadores (sin Optuna): con estos datos el tuning arriesga sobreajustar al backtest.
+

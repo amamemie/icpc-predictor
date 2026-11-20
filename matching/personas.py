@@ -17,7 +17,7 @@ def normalizar_nombre(nombre: str | None) -> str:
 
     Sin tildes, minúsculas, solo letras/dígitos separados por un espacio.
     """
-    if not nombre:
+    if not isinstance(nombre, str) or not nombre:
         return ""
     texto = unidecode(nombre).lower()
     texto = re.sub(r"[^a-z0-9]+", " ", texto)
