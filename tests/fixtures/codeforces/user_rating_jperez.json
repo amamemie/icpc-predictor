@@ -1,0 +1,5 @@
+{"status": "OK", "result": [
+  {"contestId": 1100, "contestName": "Round A", "handle": "jperez", "rank": 900, "ratingUpdateTimeSeconds": 1609459200, "oldRating": 0, "newRating": 1400},
+  {"contestId": 1200, "contestName": "Round B", "handle": "jperez", "rank": 500, "ratingUpdateTimeSeconds": 1622505600, "oldRating": 1400, "newRating": 1550},
+  {"contestId": 1300, "contestName": "Round C", "handle": "jperez", "rank": 300, "ratingUpdateTimeSeconds": 1640995200, "oldRating": 1550, "newRating": 1650}
+]}

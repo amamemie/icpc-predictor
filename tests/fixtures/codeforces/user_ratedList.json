@@ -1,0 +1,6 @@
+{"status": "OK", "result": [
+  {"handle": "jperez", "firstName": "Juan", "lastName": "Pérez", "country": "Bolivia", "city": "Cochabamba", "organization": "UMSS", "rating": 1650, "maxRating": 1802, "registrationTimeSeconds": 1546300800},
+  {"handle": "ana_q", "firstName": "Ana", "lastName": "Quispe", "country": "Bolivia", "rating": 1400, "maxRating": 1450, "registrationTimeSeconds": 1577836800},
+  {"handle": "tourist", "firstName": "Gennady", "lastName": "Korotkevich", "country": "Belarus", "rating": 3800, "maxRating": 4000, "registrationTimeSeconds": 1265987288},
+  {"handle": "sin_pais", "rating": 1200, "maxRating": 1300, "registrationTimeSeconds": 1600000000}
+]}
