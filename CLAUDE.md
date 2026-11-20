@@ -161,7 +161,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ## 11. Fases del proyecto
 
-> **Fase actual: FASE 2** (actualizar esta línea al cerrar cada fase).
+> **Fase actual: FASE 3** (actualizar esta línea al cerrar cada fase).
 >
 > Reglas: no empezar una fase sin cumplir el "Listo cuando" de la anterior (salvo donde se indique que pueden ir en paralelo). Al cerrar una fase, marcar sus casillas y anotar decisiones/aprendizajes en la sección 14.
 
@@ -335,3 +335,4 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - **Empates**: BOCA nunca empata; MOJ sí (`data-place` repetido: en latam-2026, 96 equipos con 0 resueltos comparten el 433). Decisión (aprobada): posición = 1..n en el orden de la página. Para el target de la Fase 5 conviene tratar los empates (p. ej. posición media del bloque, sobre todo los de 0 resueltos: 7–96 equipos por competencia).
   - Universidad vacía (`[]`) en hasta 29 equipos por competencia (latam-2019 y 2022).
 
+- 2026-11-20 — Fase 2 — **Fase 2 cerrada.** Validación al 100 % (13/13). Queda abierto, sin bloquear, "parser para otras fuentes" (solo para nacionales 2019–2021).
