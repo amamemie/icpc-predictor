@@ -161,7 +161,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ## 11. Fases del proyecto
 
-> **Fase actual: FASE 1** (actualizar esta línea al cerrar cada fase).
+> **Fase actual: FASE 2** (actualizar esta línea al cerrar cada fase).
 >
 > Reglas: no empezar una fase sin cumplir el "Listo cuando" de la anterior (salvo donde se indique que pueden ir en paralelo). Al cerrar una fase, marcar sus casillas y anotar decisiones/aprendizajes en la sección 14.
 
@@ -325,3 +325,4 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - `user.rating` de los 366: 0 fallos, 9.300 cambios de rating (2010-03 a 2026-11). El último rating del historial coincide con el de `ratedList` en el 100 % de los casos.
   - Bolivianos con al menos un contest en el año: 2019 = 76, 2020 = 73, 2021 = 58, 2022 = 60, 2023 = 103, 2024 = 113, 2025 = 113, 2026 = 88. Frente a ~600 competidores por nacional, **el cold start será la norma**: pesarán más las features de universidad e historial ICPC, y en la Fase 4 habrá que buscar cuentas por nombre/handle (`user.info`), no solo por país.
   - Fechas del historial = `ratingUpdateTimeSeconds` (cuando CF aplica el rating, minutos u horas después del contest), en UTC. `rating_a_la_fecha` con una `date` corta a las 00:00 UTC; Bolivia es UTC−4.
+- 2026-11-20 — Fase 1 — **Fase 1 cerrada.** `rating_a_la_fecha` probada con tests y con datos reales de los 366 candidatos bolivianos.
