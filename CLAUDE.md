@@ -48,7 +48,7 @@ Idioma del proyecto: español (código y nombres de variables pueden ir en ingl�
 | Torneo Chileno de Programación | `subch-2024` … `subch-2026` |
 | Fase Zero Maratona SBC | `fzero-2025` |
 
-Formato observado en `latam-2025` (verificar en cada año, puede variar):
+**Ojo: 2026 usa otro sistema (MOJ), no BOCA** — ver sección 14. Formato BOCA observado en `latam-2025` (válido para 2019–2025, verificar en cada año):
 - HTML de BOCA (sin JSON visible). Pestañas SCORE, RUNS, TASKS, CLARIFICATIONS, STATISTICS y "Final Scoreboard".
 - Columnas: `#`, `User/Site Name`, problemas `A`…`L`, `Total`.
 - Celda de problema: `intentos/minuto` (ej. `2/58` = resuelto en el min 58 al 2º intento; `3/-` = 3 intentos sin resolver). Los problemas no intentados son un `<td>` vacío (verificado en 2019 y 2025: todas las filas tienen el mismo nº de celdas) → **alinear por índice de `<td>`, no por orden de texto**.
@@ -309,4 +309,12 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - Logins CCL con prefijo variable: `cclsobo…` (2024), `teamcclsobo…` (2025). Para detectar CCL usar "contiene `ccl`", no "empieza con `ccl`".
   - Prefijos de login bolivianos por año distintos (`teamsobolp`, `teamsoboch`, `teamsobo…23014` en 2023) → no sirven como identificador entre años.
   - Nº de problemas por año: 2020 = 15, 2021 = 14, 2022 = 14, 2023 = 13, 2024 = 12, 2025 = 13.
+- 2026-11-20 — Fase 0 — **`latam-2026` y `subbr-2026` no son BOCA sino reportes MOJ** → necesitan un parser distinto:
+  - Fechas visibles en la página: `latam-2026` el 2026-11-07 (563 equipos), `subbr-2026` el 2026-08-29 (2009 filas). Cargadas en `competencias.csv` con `formato=moj`.
+  - Una sola tabla `table.score`; cada `<tr>` trae atributos `data-login`, `data-country`, `data-cname`, `data-univ` (sigla), `data-ufull` (nombre completo de la universidad), `data-region` (ciudad/sede), `data-place`, `data-tie` (`resueltos|penalidad|último minuto`). Mucho más fácil que BOCA: no hay que parsear el texto del nombre para sacar país o universidad.
+  - `data-place` es la posición **en la tabla completa**; las vistas se filtran en el navegador con regex sobre el login (`var RTREE=[{n, d, r}]`, `d` = profundidad). La posición nacional de Bolivia hay que **recalcularla** filtrando la vista `Bolivia` de nivel 0 (en 2026: 227 equipos, `teambo…`; ojo, también hay vistas `Bolivia` anidadas bajo "Times femininos").
+  - CCL: fila `guest-row`, `data-place` vacío, `#` = `–`, nombre con "guest". Login `ccl…` (en `subbr-2026` la vista `CCL Bolivia` usa `cclbo…`, 11 equipos).
+  - `qual-row` marca a los clasificados. Celdas: `intentos/minuto` en `span.pv`, `★` = primer equipo en resolver, `data-sec` = segundo exacto de la aceptación.
+  - Hay vista de scoreboard congelado (`score-frozen.html`) aparte.
+  - Bolivia en `latam-2026`: 80 equipos.
 
