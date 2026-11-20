@@ -47,6 +47,8 @@ CREATE TABLE IF NOT EXISTS equipos (
 CREATE TABLE IF NOT EXISTS integrantes (
     equipo_id   INTEGER NOT NULL REFERENCES equipos(id),
     persona_id  INTEGER NOT NULL REFERENCES personas(id),
+    rol         TEXT NOT NULL DEFAULT 'concursante' CHECK (rol IN ('concursante', 'coach')),
+    fuente      TEXT NOT NULL,              -- manual | cf_blog | icpc_global | ...
     PRIMARY KEY (equipo_id, persona_id)
 );
 

@@ -199,10 +199,10 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 3 — Integrantes de los equipos
 **Objetivo:** saber qué personas formaban cada equipo.
-- [ ] Extraer integrantes de páginas de equipo (icpc.global), cphof.org, contests jugados con handles (CF/Gym).
-- [ ] Completar faltantes con fuentes locales (universidades, clubes, coaches) en `data/manual/integrantes.csv`.
-- [ ] Crear `personas` con `nombre_normalizado` (unidecode, minúsculas, sin dobles espacios) y deduplicar personas que aparecen en varios años.
-- [ ] Tests de normalización de nombres.
+- [ ] Extraer integrantes de páginas de equipo (icpc.global), cphof.org, contests jugados con handles (CF/Gym). *(Inventario hecho: ninguna da integrantes de equipos bolivianos de forma automática; solo blogs de CF copiados a mano. Ver sección 14.)*
+- [ ] Completar faltantes con fuentes locales (universidades, clubes, coaches) en `data/manual/integrantes.csv`. *(Plantilla generada: 421 equipos de la regional × 4 filas; `python -m matching.integrantes plantilla [--nacional]`. Falta llenarla.)*
+- [x] Crear `personas` con `nombre_normalizado` (unidecode, minúsculas, sin dobles espacios) y deduplicar personas que aparecen en varios años. *(`matching/personas.py`; misma persona = mismo handle CF, o mismo nombre normalizado + misma universidad.)*
+- [x] Tests de normalización de nombres.
 
 **Entregable:** tabla `integrantes` poblada.
 **Listo cuando:** ≥ 80 % de los **equipos bolivianos en la regional** tienen sus 3 integrantes identificados (registrar el % real); la cobertura del nacional se reporta aparte.
@@ -347,3 +347,10 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - Prensa (Los Tiempos) y búsquedas web: sin listas de integrantes recientes.
   - **Fechas** de `competencias.csv` llenadas con la fecha más temprana entre fuentes (icpc.global y la página del scoreboard), para no filtrar información: la regional "2022" se jugó el 2023-03-16 y la "2020" el 2021-07-08. La de 2021 en icpc.global (South Finals 2023-03-17) es un error de carga; se usa 2022-04-01 (Brazil Finals).
   - Conclusión: los integrantes de los equipos bolivianos tendrán que venir sobre todo de **carga manual** (`data/manual/integrantes.csv`) con ayuda de coaches/comunidad, más los blogs de CF copiados a mano.
+- 2026-11-20 — Fase 3 — Infraestructura de integrantes lista:
+  - `integrantes` ahora tiene `rol` (concursante/coach) y `fuente`; `crear_db` migra la tabla vieja si está vacía.
+  - `data/manual/integrantes.csv`: columnas `slug, año, login, posicion, universidad, equipo, rol, orden, nombre, cf_handle, fuente, notas`; 4 filas por equipo. Se llena `nombre` y/o `cf_handle` (`fuente` vacío = `manual`). `plantilla` solo agrega equipos nuevos al final, nunca reescribe lo llenado.
+  - `cargar`: el CSV manda; los integrantes de cada equipo del CSV se reemplazan por lo que dice el CSV. Un `cf_handle` dado en el CSV se guarda en `cuentas` como verificado (confianza 1.0), lo que adelanta parte de la Fase 4.
+  - Una persona con solo handle se crea con el handle como nombre provisional y se completa cuando aparece con nombre real y el mismo handle. Personas con nombre distinto y sin handle común quedan separadas hasta el matching aproximado de la Fase 4.
+  - Cobertura inicial: 0/421 equipos de la regional y 0/866 del nacional.
+

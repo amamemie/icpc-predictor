@@ -38,12 +38,23 @@ def _migrar_fase2(conn: sqlite3.Connection) -> None:
         conn.execute(f"DROP TABLE {t}")
 
 
+def _migrar_integrantes(conn: sqlite3.Connection) -> None:
+    """Rehace `integrantes` con rol y fuente (Fase 3) si sigue con el esquema antiguo y vacía."""
+    columnas = _columnas(conn, "integrantes")
+    if not columnas or "rol" in columnas:
+        return
+    if conn.execute("SELECT COUNT(*) FROM integrantes").fetchone()[0]:
+        raise RuntimeError("integrantes tiene datos con el esquema antiguo; migrar a mano.")
+    conn.execute("DROP TABLE integrantes")
+
+
 def crear_db(ruta: Path | str = RUTA_DB) -> sqlite3.Connection:
     """Aplica el esquema (idempotente) y devuelve la conexión."""
     if str(ruta) != ":memory:":
         Path(ruta).parent.mkdir(parents=True, exist_ok=True)
     conn = conectar(ruta)
     _migrar_fase2(conn)
+    _migrar_integrantes(conn)
     conn.executescript(RUTA_ESQUEMA.read_text(encoding="utf-8"))
     conn.commit()
     return conn
