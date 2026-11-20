@@ -1,14 +1,14 @@
 nombre,tipo,año,fecha,url_scoreboard,url_equipos,formato
-Regional ICPC Latinoamérica 2019,regional,2019,,https://scorelatam.naquadah.com.br/latam-2019/,,boca
-Regional ICPC Latinoamérica 2020,regional,2020,,https://scorelatam.naquadah.com.br/latam-2020/,,boca
-Regional ICPC Latinoamérica 2021,regional,2021,,https://scorelatam.naquadah.com.br/latam-2021/,,boca
-Regional ICPC Latinoamérica 2022,regional,2022,,https://scorelatam.naquadah.com.br/latam-2022/,,boca
-Regional ICPC Latinoamérica 2023,regional,2023,,https://scorelatam.naquadah.com.br/latam-2023/,,boca
-Regional ICPC Latinoamérica 2024,regional,2024,,https://scorelatam.naquadah.com.br/latam-2024/,,boca
-Regional ICPC Latinoamérica 2025,regional,2025,,https://scorelatam.naquadah.com.br/latam-2025/,,boca
-Regional ICPC Latinoamérica 2026,regional,2026,2026-11-07,https://scorelatam.naquadah.com.br/latam-2026/,,moj
-Nacional ICPC Bolivia 2022 (Primera Fase Brasil),nacional,2022,,https://scorelatam.naquadah.com.br/subbr-2022/,,boca
-Nacional ICPC Bolivia 2023 (Primera Fase Brasil),nacional,2023,,https://scorelatam.naquadah.com.br/subbr-2023/,,boca
-Nacional ICPC Bolivia 2024 (Primera Fase Brasil),nacional,2024,,https://scorelatam.naquadah.com.br/subbr-2024/,,boca
-Nacional ICPC Bolivia 2025 (Primera Fase Brasil),nacional,2025,,https://scorelatam.naquadah.com.br/subbr-2025/,,boca
+Regional ICPC Latinoamérica 2019,regional,2019,2019-11-07,https://scorelatam.naquadah.com.br/latam-2019/,,boca
+Regional ICPC Latinoamérica 2020,regional,2020,2021-07-08,https://scorelatam.naquadah.com.br/latam-2020/,,boca
+Regional ICPC Latinoamérica 2021,regional,2021,2022-04-01,https://scorelatam.naquadah.com.br/latam-2021/,,boca
+Regional ICPC Latinoamérica 2022,regional,2022,2023-03-16,https://scorelatam.naquadah.com.br/latam-2022/,,boca
+Regional ICPC Latinoamérica 2023,regional,2023,2023-10-19,https://scorelatam.naquadah.com.br/latam-2023/,,boca
+Regional ICPC Latinoamérica 2024,regional,2024,2024-11-07,https://scorelatam.naquadah.com.br/latam-2024/,,boca
+Regional ICPC Latinoamérica 2025,regional,2025,2025-11-06,https://scorelatam.naquadah.com.br/latam-2025/,,boca
+Regional ICPC Latinoamérica 2026,regional,2026,2026-11-05,https://scorelatam.naquadah.com.br/latam-2026/,,moj
+Nacional ICPC Bolivia 2022 (Primera Fase Brasil),nacional,2022,2022-10-08,https://scorelatam.naquadah.com.br/subbr-2022/,,boca
+Nacional ICPC Bolivia 2023 (Primera Fase Brasil),nacional,2023,2023-09-01,https://scorelatam.naquadah.com.br/subbr-2023/,,boca
+Nacional ICPC Bolivia 2024 (Primera Fase Brasil),nacional,2024,2024-08-30,https://scorelatam.naquadah.com.br/subbr-2024/,,boca
+Nacional ICPC Bolivia 2025 (Primera Fase Brasil),nacional,2025,2025-09-12,https://scorelatam.naquadah.com.br/subbr-2025/,,boca
 Nacional ICPC Bolivia 2026 (Primera Fase Brasil),nacional,2026,2026-08-29,https://scorelatam.naquadah.com.br/subbr-2026/,,moj

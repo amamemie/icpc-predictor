@@ -205,7 +205,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 - [ ] Tests de normalización de nombres.
 
 **Entregable:** tabla `integrantes` poblada.
-**Listo cuando:** ≥ 80 % de los equipos tienen sus 3 integrantes identificados (registrar el % real).
+**Listo cuando:** ≥ 80 % de los **equipos bolivianos en la regional** tienen sus 3 integrantes identificados (registrar el % real); la cobertura del nacional se reporta aparte.
 
 ### FASE 4 — Resolución de identidad (persona → handle)
 **Objetivo:** vincular cada persona con sus cuentas.
@@ -336,3 +336,14 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - Universidad vacía (`[]`) en hasta 29 equipos por competencia (latam-2019 y 2022).
 
 - 2026-11-20 — Fase 2 — **Fase 2 cerrada.** Validación al 100 % (13/13). Queda abierto, sin bloquear, "parser para otras fuentes" (solo para nacionales 2019–2021).
+- 2026-11-20 — Fase 3 — Alcance de integrantes (aprobado): solo equipos bolivianos. Prioridad 1: los que jugaron la regional (~50–80/año); prioridad 2: resto del nacional según lo que cubran las fuentes automáticas. El "Listo cuando" (≥ 80 %) se mide sobre los bolivianos en la regional.
+- 2026-11-20 — Fase 3 — **Inventario de fuentes de integrantes** (resultado: ninguna fuente automática pública trae integrantes de equipos bolivianos):
+  - **cphof.org:** solo finales mundiales de ICPC; Bolivia no aparece (ni página de país). Descartado.
+  - **icpc.global:** API pública en `https://icpc.global/api/contest/public/...`. `regionalresults/<icpcYear>` devuelve el árbol de competencias con fecha y nº de equipos; `top3/<id>` solo universidades. Los standings con equipos/integrantes (`/contest/standings/contest/<id>/search`) piden login (401). Sirve para **fechas y conteos oficiales**, no para integrantes.
+    - Ids del nacional ("Bolivia Preliminary" / "Competencia Boliviana de Programación"): 2019 = 4254, 2020 = 4467, 2021 = 4714, 2022 = 5526, 2023 = 7554, 2024 = 8947, 2025 = 9406, 2026 = 9820. En icpc.global la regional aparece partida en South/North/Brazil Finals; Bolivia está en "South America/South Finals".
+    - **Los nacionales 2019–2021 existieron** (2019-09-27, 2020-12-11, 2021-11-27; 156, ? y 78 resultados), pero no se jugaron dentro de la Primera Fase de Brasil → sus tablas siguen sin fuente.
+  - **Codeforces Gym:** `contest.list?gym=true` solo lista ~100 gyms públicos/año; único mirror relevante: 106178 "2025-2026 ICPC Latin American Regional". `contest.standings` de gym pide autenticación (API key) y los equipos oficiales suelen subirse como ghosts sin handles. Baja prioridad.
+  - **Blogs de Codeforces:** hay posts con tablas "país | equipo | handles de los 3 integrantes" (ej. topic 140116, equipos del Latin America Championship 2025, con "[UMSS] Perritos Malvados | nicolasalba | el_programador | MickyOr"). Codeforces bloquea la descarga automática (403) → hay que copiarlos a mano desde el navegador. Cubren solo a los clasificados al Championship (pocos bolivianos por año), pero dan equipo → handles directamente.
+  - Prensa (Los Tiempos) y búsquedas web: sin listas de integrantes recientes.
+  - **Fechas** de `competencias.csv` llenadas con la fecha más temprana entre fuentes (icpc.global y la página del scoreboard), para no filtrar información: la regional "2022" se jugó el 2023-03-16 y la "2020" el 2021-07-08. La de 2021 en icpc.global (South Finals 2023-03-17) es un error de carga; se usa 2022-04-01 (Brazil Finals).
+  - Conclusión: los integrantes de los equipos bolivianos tendrán que venir sobre todo de **carga manual** (`data/manual/integrantes.csv`) con ayuda de coaches/comunidad, más los blogs de CF copiados a mano.
