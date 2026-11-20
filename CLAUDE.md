@@ -151,7 +151,7 @@ Pocos datos (cientos–miles de filas) → no usar deep learning.
 
 ## 9. Evaluación
 
-- **Split temporal** (ej. entrenar 2019–2024, probar 2025). Nunca split aleatorio.
+- **Split temporal:** entrenar con ≤ 2025 y probar con 2026 (el nacional y la regional de 2026 ya se jugaron). Nunca split aleatorio.
 - Métricas: Spearman, Kendall tau, NDCG@10, acierto top-k (quién clasifica).
 - Interpretabilidad con SHAP.
 
@@ -232,7 +232,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 6 — Baseline y marco de evaluación
 **Objetivo:** saber qué tan bien se puede predecir sin ML.
-- [ ] `models/evaluate.py`: split temporal (ej. train ≤ 2024, test 2025), métricas Spearman, Kendall tau, NDCG@10, acierto top-k.
+- [ ] `models/evaluate.py`: split temporal (train ≤ 2025, test 2026), métricas Spearman, Kendall tau, NDCG@10, acierto top-k.
 - [ ] `models/baseline.py`: ranking por rating máximo CF del equipo (y variante por promedio).
 - [ ] Reporte de resultados en `reports/fase6_baseline.md`.
 
@@ -251,7 +251,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 **Listo cuando:** el mejor modelo supera al baseline en el test temporal, o se documenta por qué no y se elige el baseline.
 
 ### FASE 8 — Predicción de la próxima competencia y demo
-**Objetivo:** usar el sistema de verdad.
+**Objetivo:** usar el sistema de verdad. *(Al 2026-11-20 la única competencia de 2026 que falta es Programadores de América `pda26`; las siguientes del alcance del MVP son el nacional y la regional de 2027.)*
 - [ ] Script `predict.py` que recibe la lista de equipos inscritos (CSV: equipo, universidad, integrantes/handles) y devuelve el ranking predicho.
 - [ ] Actualizar ratings justo antes de la competencia.
 - [ ] Demo Streamlit (`app/`): cargar equipos, ver ranking predicho y explicación por equipo.
@@ -319,3 +319,4 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - Bolivia en `latam-2026`: 80 equipos.
 
 - 2026-11-20 — Fase 0 — **Fase 0 cerrada.** `pytest` corre y todas las competencias objetivo tienen URL de resultados: regional 2019–2026 y nacional de Bolivia 2022–2026 (8 + 5 filas en `competencias.csv`; formato `boca` hasta 2025 y `moj` en 2026). Pendiente sin bloquear: fuente para los nacionales 2019–2021 y fechas exactas de 2019–2025.
+- 2026-11-20 — Fase 0 — Calendario: de 2026 ya se jugaron el nacional de Bolivia (Primera Fase, 2026-08-29) y la regional (2026-11-07); solo falta Programadores de América (`pda26`). Por eso el test temporal pasa a ser 2026 (train ≤ 2025). `pda26` no está en el alcance del MVP; queda como candidata a primera predicción real si se agrega antes de jugarse.
