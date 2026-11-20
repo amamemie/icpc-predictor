@@ -1,4 +1,4 @@
--- Esquema de la base (sección 5 de CLAUDE.md + cf_usuarios).
+-- Esquema de la base (sección 5 de CLAUDE.md + cf_usuarios, celdas y columnas de la Fase 2).
 -- Todas las fechas se guardan como texto ISO 8601 en UTC ("2024-05-01T14:35:00Z").
 
 PRAGMA foreign_keys = ON;
@@ -24,18 +24,24 @@ CREATE TABLE IF NOT EXISTS cuentas (
 
 CREATE TABLE IF NOT EXISTS competencias (
     id          INTEGER PRIMARY KEY,
+    slug        TEXT NOT NULL UNIQUE,       -- ej. latam-2025, subbr-2025
     nombre      TEXT NOT NULL,
     tipo        TEXT NOT NULL CHECK (tipo IN ('nacional', 'regional', 'wf')),
+    año         INTEGER,
     fecha       TEXT,
     n_equipos   INTEGER,
+    formato     TEXT,                       -- boca | moj | ...
     fuente_url  TEXT
 );
 
 CREATE TABLE IF NOT EXISTS equipos (
     id              INTEGER PRIMARY KEY,
     competencia_id  INTEGER NOT NULL REFERENCES competencias(id),
+    login           TEXT NOT NULL,          -- identificador del equipo dentro de la competencia
     nombre          TEXT NOT NULL,
-    universidad     TEXT
+    universidad     TEXT,
+    pais            TEXT,                   -- código ISO de 2 letras en mayúsculas
+    UNIQUE (competencia_id, login)
 );
 
 CREATE TABLE IF NOT EXISTS integrantes (
@@ -49,6 +55,16 @@ CREATE TABLE IF NOT EXISTS resultados (
     posicion    INTEGER,
     resueltos   INTEGER,
     penalidad   INTEGER
+);
+
+-- Una fila por problema intentado por el equipo.
+CREATE TABLE IF NOT EXISTS celdas (
+    equipo_id   INTEGER NOT NULL REFERENCES equipos(id),
+    problema    TEXT NOT NULL,              -- letra: A, B, ...
+    intentos    INTEGER NOT NULL,
+    minuto      INTEGER,                    -- minuto del acierto; NULL si no se resolvió
+    resuelto    INTEGER NOT NULL,           -- 0/1
+    PRIMARY KEY (equipo_id, problema)
 );
 
 CREATE TABLE IF NOT EXISTS historial_rating (

@@ -53,3 +53,18 @@ def test_error_permanente_no_se_reintenta_ni_cachea(tmp_path):
         c.get_json("https://ejemplo.org/d")
     assert c.peticiones_reales == 1
     assert not c.ruta_cache("https://ejemplo.org/d").exists()
+
+
+def test_descargar_archivo_no_repite(tmp_path):
+    llamadas = []
+
+    def responder(request):
+        llamadas.append(1)
+        return httpx.Response(200, text="<html>ok</html>")
+
+    c = _cliente(tmp_path, responder)
+    destino = tmp_path / "x" / "p.html"
+    c.descargar_archivo("https://ejemplo.org/p", destino)
+    c.descargar_archivo("https://ejemplo.org/p", destino)
+    assert destino.read_text() == "<html>ok</html>"
+    assert len(llamadas) == 1

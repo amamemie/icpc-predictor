@@ -189,10 +189,10 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 2 — Resultados de competencias ICPC
 **Objetivo:** tener posiciones históricas de cada equipo. *(Puede ir en paralelo con la Fase 1.)*
-- [ ] `scrapers/scorelatam.py`: parser BOCA para `latam-2019` … `latam-2026` (vista Global) y `subbr-2022` … `subbr-2026` (vista Bolivia = nacional), ver sección 3; vista elegida por `toggleGroup(N)`, deduplicado por login, extracción de país, universidad, nombre de equipo, resueltos, penalidad y celdas por problema. Guardar el HTML crudo en `data/raw/scorelatam/<slug>.html`.
-- [ ] Parser para otras fuentes (nacional de Bolivia, icpc.global, CF Gym, etc.); si una fuente no se puede parsear, CSV manual en `data/manual/resultados/`.
-- [ ] Cargar `competencias`, `equipos` y `resultados` (posición, resueltos, penalidad, universidad).
-- [ ] Script de validación: nº de equipos y top 3 coinciden con la fuente.
+- [x] `scrapers/scorelatam.py`: parser BOCA para `latam-2019` … `latam-2026` (vista Global) y `subbr-2022` … `subbr-2026` (vista Bolivia = nacional), ver sección 3; vista elegida por `toggleGroup(N)`, deduplicado por login, extracción de país, universidad, nombre de equipo, resueltos, penalidad y celdas por problema. Guardar el HTML crudo en `data/raw/scorelatam/<slug>.html`. *(Hecho, + parser MOJ para 2026 en el mismo módulo; el país sale de la bandera, no del login.)*
+- [ ] Parser para otras fuentes (nacional de Bolivia, icpc.global, CF Gym, etc.); si una fuente no se puede parsear, CSV manual en `data/manual/resultados/`. *(No hace falta para el MVP: el nacional de Bolivia sale de scorelatam. Sigue abierto solo para los nacionales 2019–2021, sin fuente.)*
+- [x] Cargar `competencias`, `equipos` y `resultados` (posición, resueltos, penalidad, universidad). *(+ `celdas` por problema; `python -m scrapers.scorelatam cargar`.)*
+- [x] Script de validación: nº de equipos y top 3 coinciden con la fuente. *(`python -m scrapers.validar_resultados`: además del nº y top 3, orden completo, posiciones 1..n, orden coherente y celdas = resueltos.)*
 
 **Entregable:** todas las competencias de `competencias.csv` cargadas.
 **Listo cuando:** la validación pasa para el 100 % de las competencias objetivo.
@@ -326,3 +326,12 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - Bolivianos con al menos un contest en el año: 2019 = 76, 2020 = 73, 2021 = 58, 2022 = 60, 2023 = 103, 2024 = 113, 2025 = 113, 2026 = 88. Frente a ~600 competidores por nacional, **el cold start será la norma**: pesarán más las features de universidad e historial ICPC, y en la Fase 4 habrá que buscar cuentas por nombre/handle (`user.info`), no solo por país.
   - Fechas del historial = `ratingUpdateTimeSeconds` (cuando CF aplica el rating, minutos u horas después del contest), en UTC. `rating_a_la_fecha` con una `date` corta a las 00:00 UTC; Bolivia es UTC−4.
 - 2026-11-20 — Fase 1 — **Fase 1 cerrada.** `rating_a_la_fecha` probada con tests y con datos reales de los 366 candidatos bolivianos.
+- 2026-11-20 — Fase 2 — Resultados cargados y validados (13/13 competencias OK):
+  - Equipos por competencia (sin CCL): latam 2019 = 343, 2020 = 302, 2021 = 252, 2022 = 309, 2023 = 404, 2024 = 490, 2025 = 558, 2026 = 528; nacional Bolivia 2022 = 100, 2023 = 153, 2024 = 189, 2025 = 197, 2026 = 227.
+  - Bolivianos en la regional: 2019 = 26, 2020 = 14, 2021 = 22, 2022 = 51, 2023 = 73, 2024 = 79, 2025 = 76, 2026 = 80.
+  - Esquema ampliado (aprobado por el usuario): `competencias.slug/año/formato`, `equipos.login/pais`, tabla `celdas`. `crear_db` migra sola las tablas viejas si están vacías.
+  - **País = bandera (`<img alt>`), no el sufijo del login**: en `latam-2020` el sufijo es la subregión (SO, NO, CB, CA) y en 2019 cinco equipos llevan el país de su sede. BOCA usa `ur` para Uruguay → se normaliza a `UY`.
+  - En latam-2022+ el texto de los enlaces de vista va dentro de `<b>` (BeautifulSoup lo maneja; ojo con regex).
+  - **Empates**: BOCA nunca empata; MOJ sí (`data-place` repetido: en latam-2026, 96 equipos con 0 resueltos comparten el 433). Decisión (aprobada): posición = 1..n en el orden de la página. Para el target de la Fase 5 conviene tratar los empates (p. ej. posición media del bloque, sobre todo los de 0 resueltos: 7–96 equipos por competencia).
+  - Universidad vacía (`[]`) en hasta 29 equipos por competencia (latam-2019 y 2022).
+

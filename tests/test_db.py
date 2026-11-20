@@ -63,3 +63,22 @@ def test_rating_a_la_fecha_sin_datos(conn):
     assert rating_a_la_fecha(conn, "codeforces", "jperez", date(2020, 12, 31)) is None
     assert rating_a_la_fecha(conn, "codeforces", "nadie", date(2025, 1, 1)) is None
     assert rating_a_la_fecha(conn, "atcoder", "jperez", date(2025, 1, 1)) is None
+
+
+def test_migracion_fase2_rehace_tablas_vacias(tmp_path):
+    import sqlite3
+
+    from db.crear import crear_db
+
+    ruta = tmp_path / "vieja.sqlite"
+    vieja = sqlite3.connect(ruta)
+    vieja.executescript(
+        "CREATE TABLE competencias (id INTEGER PRIMARY KEY, nombre TEXT, tipo TEXT);"
+        "CREATE TABLE equipos (id INTEGER PRIMARY KEY, competencia_id INT, nombre TEXT);"
+        "CREATE TABLE integrantes (equipo_id INT, persona_id INT);"
+        "CREATE TABLE resultados (equipo_id INT PRIMARY KEY, posicion INT);"
+    )
+    vieja.close()
+    conn = crear_db(ruta)
+    columnas = {f[1] for f in conn.execute("PRAGMA table_info(competencias)")}
+    assert {"slug", "año", "formato"} <= columnas

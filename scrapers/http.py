@@ -135,6 +135,33 @@ class ClienteHTTP:
                 raise ErrorPermanente(f"HTTP {resp.status_code} en {url}")
             return resp.json()
 
+        body = self._con_reintentos(pedir_y_validar)
+        self._guardar_cache(url, params, body)
+        return body
+
+    def descargar_archivo(self, url: str, destino: Path | str, refrescar: bool = False) -> Path:
+        """Guarda el cuerpo de la URL en `destino` tal cual (HTML, PDF…).
+
+        Si `destino` ya existe no se vuelve a pedir (salvo `refrescar=True`).
+        """
+        destino = Path(destino)
+        if destino.exists() and not refrescar:
+            return destino
+
+        def pedir() -> bytes:
+            resp = self._pedir(url, None)
+            if resp.status_code >= 400:
+                raise ErrorPermanente(f"HTTP {resp.status_code} en {url}")
+            return resp.content
+
+        contenido = self._con_reintentos(pedir)
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        tmp = destino.with_suffix(destino.suffix + ".tmp")
+        tmp.write_bytes(contenido)
+        tmp.replace(destino)
+        return destino
+
+    def _con_reintentos(self, funcion):
         reintentos = Retrying(
             retry=retry_if_exception_type(ErrorTransitorio),
             # Espera min, 2·min, 4·min… hasta 120 s (min=4 → 4, 8, 16, 32, 64 s).
@@ -144,9 +171,7 @@ class ClienteHTTP:
             stop=stop_after_attempt(self.intentos),
             reraise=True,
         )
-        body = reintentos(pedir_y_validar)
-        self._guardar_cache(url, params, body)
-        return body
+        return reintentos(funcion)
 
     def cerrar(self) -> None:
         self._http.close()
