@@ -44,7 +44,7 @@ Idioma del proyecto: español (código y nombres de variables pueden ir en ingl�
 |---|---|
 | Regional ICPC Latinoamérica | `latam-2019` … `latam-2026` (la de 2020 se jugó remota en 2021) |
 | Programadores de América (PdA) | `pda24`, `pda25`, `pda26` (año a 2 dígitos) |
-| Primera fase Brasil | `subbr-2020` … `subbr-2026` (+ `subbr-2022-extravitoria`) |
+| Primera fase Brasil (**= nacional de Bolivia desde 2022**) | `subbr-2020` … `subbr-2026` (+ `subbr-2022-extravitoria`) |
 | Torneo Chileno de Programación | `subch-2024` … `subch-2026` |
 | Fase Zero Maratona SBC | `fzero-2025` |
 
@@ -58,7 +58,7 @@ Formato observado en `latam-2025` (verificar en cada año, puede variar):
 - **No lista integrantes** → los integrantes siguen siendo un problema de la Fase 3.
 - Los equipos marcados como CCL (ej. `cclbrbr005`) parecen ser una categoría aparte; decidir si incluirlos o excluirlos del ranking (anotar en la sección 14).
 - El login (`teamsobo078`) es un buen identificador de equipo dentro de una competencia, pero **no** entre años.
-- Falta aún una fuente para el **nacional de Bolivia**.
+- **Nacional de Bolivia:** Bolivia juega la Primera Fase de Brasil (mismo contest). En `subbr-*` el ranking nacional es la vista "Bolivia" (su `#` ya es la posición nacional). Cubre 2022 en adelante; en `subbr-2020` y `subbr-2021` no hay equipos bolivianos → los nacionales 2019–2021 siguen sin fuente.
 
 ### Reglas al descargar
 - Respetar límites: Codeforces ~1 petición cada 2 s; AtCoder y CodeChef aún más espaciado (≥ 2–10 s).
@@ -171,7 +171,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 - [x] `pyproject.toml` con dependencias base, entorno virtual, `pytest` y `ruff` configurados.
 - [x] Decidir competencias objetivo (ej. nacional Bolivia + regional Latinoamérica) y años (3–5).
 - [x] Inventario manual de fuentes: `data/manual/competencias.csv` con `nombre, tipo, año, fecha, url_scoreboard, url_equipos, formato (html/pdf/boca/cf_gym)`. *(Regional 2019–2026 cargado; fila del nacional de Bolivia vacía, sin fuente aún.)*
-- [ ] Verificar a mano 1–2 URLs de cada fuente para saber si se puede scrapear o habrá que cargar CSV a mano.
+- [x] Verificar a mano 1–2 URLs de cada fuente para saber si se puede scrapear o habrá que cargar CSV a mano.
 
 **Entregable:** repo funcionando + `competencias.csv`.
 **Listo cuando:** `pytest` corre (aunque sin tests reales) y cada competencia objetivo tiene al menos una URL de resultados identificada.
@@ -189,7 +189,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 2 — Resultados de competencias ICPC
 **Objetivo:** tener posiciones históricas de cada equipo. *(Puede ir en paralelo con la Fase 1.)*
-- [ ] `scrapers/scorelatam.py`: parser BOCA para `latam-2019` … `latam-2026` (ver sección 3), vista Global, deduplicado por login, extracción de país, universidad, nombre de equipo, resueltos, penalidad y celdas por problema. Guardar el HTML crudo en `data/raw/scorelatam/<slug>.html`.
+- [ ] `scrapers/scorelatam.py`: parser BOCA para `latam-2019` … `latam-2026` (vista Global) y `subbr-2022` … `subbr-2026` (vista Bolivia = nacional), ver sección 3; vista elegida por `toggleGroup(N)`, deduplicado por login, extracción de país, universidad, nombre de equipo, resueltos, penalidad y celdas por problema. Guardar el HTML crudo en `data/raw/scorelatam/<slug>.html`.
 - [ ] Parser para otras fuentes (nacional de Bolivia, icpc.global, CF Gym, etc.); si una fuente no se puede parsear, CSV manual en `data/manual/resultados/`.
 - [ ] Cargar `competencias`, `equipos` y `resultados` (posición, resueltos, penalidad, universidad).
 - [ ] Script de validación: nº de equipos y top 3 coinciden con la fuente.
@@ -291,14 +291,22 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 - 2026-11-20 — Fase 0 — Entorno: `python -m venv .venv` + `pip install -e ".[dev]"` (no hay `uv` instalado). `pytest` y `ruff` configurados en `pyproject.toml`.
 - 2026-11-20 — Fase 0 — Competencias objetivo: regional Latinoamérica 2019–2026 (scorelatam) + nacional de Bolivia (sin fuente todavía). `latam-2020` se registra con año 2020 aunque se jugó en 2021. Fechas exactas pendientes: el HTML de scorelatam no trae la fecha del contest.
 - 2026-11-20 — Fase 0 — Formato scorelatam, comparando `latam-2019` y `latam-2025`:
-  - Ambos: BOCA, página "Final Scoreboard" con **una sola tabla** `table#myscoretable` que contiene todas las vistas a la vez. Cada `<tr>` tiene clase `sitegroupN`; la vista N es el N-ésimo enlace `toggleGroup(N)` de "Available scores". **Vista Global = `sitegroup1`** en ambos años (2019: 343 equipos; 2025: 558).
+  - Ambos: BOCA, página "Final Scoreboard" con **una sola tabla** `table#myscoretable` que contiene todas las vistas a la vez. Cada `<tr>` tiene clase `sitegroupN`, y el enlace de la vista en "Available scores" llama a `toggleGroup(N)`. En latam la vista Global es `sitegroup1` (2019: 343 equipos; 2025: 558), pero en `subbr` no (ver la entrada siguiente).
   - Columnas iguales: `#`, `User/Site` (login/PAÍS, con `<img alt="bo">`), `Name` (`[Universidad] Nombre`), problemas, `Total` = `resueltos (penalidad)`. Cambia el nº de problemas: 2019 A–M (13), 2025 A–L (12) → leer la cabecera, no fijar el número.
   - Todas las filas tienen todas las celdas; sin empates en `#` y sin logins repetidos dentro de la vista Global.
   - Nombre: en 2025 puede traer texto extra tras un `<br>` (44 equipos, ej. "🎖️ Qualified for Programadores de America in Chile"); quedarse con el texto antes del `<br>`. Hay emojis y texto libre dentro del propio nombre. La universidad puede venir vacía (`[]`).
   - **El prefijo del login cambia entre años para el mismo país** (Bolivia: `teamsobv` en 2019, `teamsobo` en 2025) y no siempre coincide con el país (`teamsoar` agrupa más equipos que `/AR`). Usar el sufijo `/PAÍS` como país, nunca el prefijo.
-  - Vistas: 2019 tiene 22 con slugs cortos (`global`, `sobv`, `south`, `cclglobal`…); 2025 tiene 34 con nombres largos (`Global`, `Global+CCL`, `Female_Teams`, `Bolivia`…). Mapear siempre por posición (`sitegroup1`), no por nombre.
+  - Vistas: 2019 tiene 22 con slugs cortos (`global`, `sobv`, `south`, `cclglobal`…); 2025 tiene 34 con nombres largos (`Global`, `Global+CCL`, `Female_Teams`, `Bolivia`…). Mapear vista → grupo leyendo el número de `toggleGroup(N)` del enlace, nunca por posición ni asumiendo `sitegroup1`.
   - CCL: en ningún año aparece en la vista Global (cero logins `ccl*`); van solo en `Global+CCL`/`cclglobal`. Decisión: excluirlos (no son equipos ICPC del regional).
   - Bolivia en la vista Global: 26 equipos en 2019 y 76 en 2025.
   - Equipos con 0 resueltos sí aparecen (28 en 2019, 9 en 2025) → incluirlos en `n_equipos`.
   - La cabecera de 2025 enlaza a Score/Runs/Tasks/Clarifications/Statistics y a los PDF del problem set; 2019 solo a Statistics/Clarifications/Run List.
+- 2026-11-20 — Fase 0 — **Nacional de Bolivia = Primera Fase de Brasil** (`subbr-*`), confirmado por el usuario y verificado descargando `subbr-2020` a `subbr-2025`:
+  - Equipos bolivianos por año: 2020 = 0, 2021 = 0, 2022 = 100, 2023 = 153, 2024 = 189, 2025 = 197 (vista "Bolivia", sin CCL). Los nacionales 2019–2021 necesitan otra fuente; en `competencias.csv` solo se cargan 2022–2026.
+  - La vista "Bolivia" recalcula `#` de 1 a n → es directamente la posición nacional. Tiene subvistas por ciudad (`Cochabamba`, `La_Paz`, `Santa_Cruz`…) y existe aparte una vista `Bolivia-CCL`.
+  - **El número de grupo de cada vista no es su posición en la lista**: los enlaces anidados saltan números (`subbr-2025`: Bolivia = `sitegroup67`, Global = `sitegroup164`; `subbr-2024`: Bolivia = 64, Global = 163). `subbr-2023` ni siquiera tiene vista Global. Buscar la vista por el texto del enlace (`Bolivia`, `Bolivia(`) y tomar el N de `toggleGroup(N)`.
+  - Nombres de vista con paréntesis (`Bolivia(`, `Tupiza)`) porque el HTML anida la lista de subvistas.
+  - Logins CCL con prefijo variable: `cclsobo…` (2024), `teamcclsobo…` (2025). Para detectar CCL usar "contiene `ccl`", no "empieza con `ccl`".
+  - Prefijos de login bolivianos por año distintos (`teamsobolp`, `teamsoboch`, `teamsobo…23014` en 2023) → no sirven como identificador entre años.
+  - Nº de problemas por año: 2020 = 15, 2021 = 14, 2022 = 14, 2023 = 13, 2024 = 12, 2025 = 13.
 
