@@ -221,7 +221,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 5 — Features y dataset de entrenamiento
 **Objetivo:** una tabla lista para ML, sin fuga de información.
-- [ ] `features/build_features.py`: features por persona y por equipo de la sección 7, **calculadas a la fecha de cada competencia**.
+- [ ] `features/build_features.py`: features por persona y por equipo de la sección 7, **calculadas a la fecha de cada competencia**. *(Adelantado en la Fase 3, con aprobación del usuario: `features/universidad.py` con historial de universidad y de equipo. Faltan las features por persona/rating, que dependen de los integrantes.)*
 - [ ] Manejo de cold start (`sin_rating`, valores por defecto).
 - [ ] Target: percentil = posición / n_equipos.
 - [ ] Test anti-fuga: ninguna feature usa datos con fecha ≥ fecha de la competencia.
@@ -354,3 +354,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - Una persona con solo handle se crea con el handle como nombre provisional y se completa cuando aparece con nombre real y el mismo handle. Personas con nombre distinto y sin handle común quedan separadas hasta el matching aproximado de la Fase 4.
   - Cobertura inicial: 0/421 equipos de la regional y 0/866 del nacional.
 
+- 2026-11-20 — Fase 3 — **Adelantado de la Fase 5 (aprobado por el usuario):** `features/universidad.py`, features de historial de universidad y de equipo que no dependen de los integrantes. Todas "a la fecha" (solo competencias con fecha < D), con test anti-fuga.
+  - Universidad normalizada a la sigla base (sin sede): `UCB-Cochabamba` → `UCB`, `UPBLP`/`UPB - Cbba` → `UPB`, `UV-La Paz`/`Univalle Scz` → `UNIVALLE`. Se pierde la distinción entre sedes a cambio de más historial. 71 equipos bolivianos no tienen universidad.
+  - "Mismo equipo" = mismo nombre normalizado + misma universidad. Los equipos suelen conservar el nombre entre el nacional y la regional y entre años.
+  - Señal en equipos bolivianos (Spearman con el percentil real, más bajo = mejor): `eq_pct_previo` +0.70 en la regional / +0.48 en el nacional (pero solo 33 % de equipos tienen dato); historial de la universidad (`uni_media_pct_3a_*`, `uni_mejor_pct_*`) entre +0.38 y +0.54 (80 % con dato). Son candidatos fuertes para el baseline junto al rating.
