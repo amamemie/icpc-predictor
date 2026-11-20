@@ -178,11 +178,11 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 1 — Base de datos y datos de Codeforces
 **Objetivo:** tener ratings históricos de los competidores de la región.
-- [ ] Esquema SQLite de la sección 5 (`db/schema.sql` + script de creación).
-- [ ] Cliente HTTP común: caché en `data/raw/`, rate limit configurable por plataforma, reintentos con backoff.
-- [ ] `scrapers/codeforces.py`: `user.ratedList?includeRetired=true` → filtrar por país (Bolivia) y guardar candidatos (handle, nombre si público, organización, país).
-- [ ] `user.rating` para cada candidato → `historial_rating`.
-- [ ] Tests de parseo con respuestas guardadas (sin red).
+- [x] Esquema SQLite de la sección 5 (`db/schema.sql` + script de creación). *(+ tabla `cf_usuarios` para candidatos sin persona, con `estado_historial` pendiente/ok/fallido para reanudar.)*
+- [x] Cliente HTTP común: caché en `data/raw/`, rate limit configurable por plataforma, reintentos con backoff.
+- [x] `scrapers/codeforces.py`: `user.ratedList?includeRetired=true` → filtrar por país (Bolivia) y guardar candidatos (handle, nombre si público, organización, país).
+- [x] `user.rating` para cada candidato → `historial_rating`.
+- [x] Tests de parseo con respuestas guardadas (sin red).
 
 **Entregable:** `db.sqlite` con usuarios CF de Bolivia y su historial.
 **Listo cuando:** se puede consultar "rating de handle X en la fecha D" con una función `rating_a_la_fecha(plataforma, handle, fecha)` probada con tests.
@@ -320,3 +320,8 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 - 2026-11-20 — Fase 0 — **Fase 0 cerrada.** `pytest` corre y todas las competencias objetivo tienen URL de resultados: regional 2019–2026 y nacional de Bolivia 2022–2026 (8 + 5 filas en `competencias.csv`; formato `boca` hasta 2025 y `moj` en 2026). Pendiente sin bloquear: fuente para los nacionales 2019–2021 y fechas exactas de 2019–2025.
 - 2026-11-20 — Fase 0 — Calendario: de 2026 ya se jugaron el nacional de Bolivia (Primera Fase, 2026-08-29) y la regional (2026-11-07); solo falta Programadores de América (`pda26`). Por eso el test temporal pasa a ser 2026 (train ≤ 2025). `pda26` no está en el alcance del MVP; queda como candidata a primera predicción real si se agrega antes de jugarse.
+- 2026-11-20 — Fase 1 — Datos de Codeforces descargados (`python -m scrapers.codeforces candidatos` y `historiales`):
+  - `user.ratedList?includeRetired=true` devuelve 995.511 usuarios (≈47 MB comprimido en caché). **Solo 366 tienen `country = Bolivia`**; 152 sin organización. Buscar por universidad boliviana en otros países solo suma ~10 cuentas, casi todas falsos positivos (EMI, USB son siglas ambiguas) → no se agregan.
+  - `user.rating` de los 366: 0 fallos, 9.300 cambios de rating (2010-03 a 2026-11). El último rating del historial coincide con el de `ratedList` en el 100 % de los casos.
+  - Bolivianos con al menos un contest en el año: 2019 = 76, 2020 = 73, 2021 = 58, 2022 = 60, 2023 = 103, 2024 = 113, 2025 = 113, 2026 = 88. Frente a ~600 competidores por nacional, **el cold start será la norma**: pesarán más las features de universidad e historial ICPC, y en la Fase 4 habrá que buscar cuentas por nombre/handle (`user.info`), no solo por país.
+  - Fechas del historial = `ratingUpdateTimeSeconds` (cuando CF aplica el rating, minutos u horas después del contest), en UTC. `rating_a_la_fecha` con una `date` corta a las 00:00 UTC; Bolivia es UTC−4.
