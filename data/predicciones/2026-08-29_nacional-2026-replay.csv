@@ -1,0 +1,228 @@
+posicion_predicha,equipo,universidad,pais,puntaje,explicacion,eq_pct_previo,uni_media_pct_3a_nacional,uni_cf_top3_rating
+1,Los Culisueltos,UPBLP,BO,-0.07605454335547146,↑ veces que el equipo compitió antes; ↑ resultado previo del equipo; ↓ nacionales jugados por la universidad,0.35304659498207885,0.25075228436928443,1471.6666666666667
+2,Los Sabrossos 🐻,UMSA,BO,0.006606822621689101,↑ resultado previo del equipo; ↓ nacionales jugados por la universidad; ↑ historial de la universidad en el nacional,0.33154121863799285,0.15789589634186696,1440.3333333333333
+3,Testigos de Turing,UPBLP,BO,0.01940067739247464,↑ resultado previo del equipo; ↑ veces que el equipo compitió antes; ↓ nacionales jugados por la universidad,0.3046594982078853,0.25075228436928443,1471.6666666666667
+4,"Noches sin dormir, días sin reír",UPB - Cbba,BO,0.02729753091166709,↑ resultado previo del equipo; ↑ veces que el equipo compitió antes; ↓ nacionales jugados por la universidad,0.32616487455197135,0.25075228436928443,1471.6666666666667
+5,Código Penal,UCB-Tarija,BO,0.14407305210135335,↑ resultado previo del equipo; ↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,0.26344086021505375,0.3995559791403831,1368.6666666666667
+6,Pitón+,UCB-Cochabamba,BO,0.22896422743267275,↑ resultado previo del equipo; ↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,0.4946236559139785,0.3995559791403831,1368.6666666666667
+7,The Simple Burgers,UMSS,BO,0.2375600596029232,↑ resultado previo del equipo; ↓ su último resultado fue en el nacional; ↑ rating CF de los 3 mejores de la universidad,0.23857868020304568,0.20679222995834917,1834.0
+8,RISE,UPDS-Tarija,BO,0.24872541548631194,↑ resultado previo del equipo; ↓ nacionales jugados por la universidad; ↑ veces que el equipo compitió antes,0.489247311827957,0.5734294319344584,1198.5
+9,Los Papus,USFA,BO,0.2999814539651886,↑ veces que el equipo compitió antes; ↑ resultado previo del equipo; ↓ nacionales jugados por la universidad,0.4874551971326165,0.7337997303326921,
+10,S.E.E.S,UAJMS,BO,0.300160589732937,↑ resultado previo del equipo; ↓ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad,0.1116751269035533,0.5081131380922363,1393.0
+11,Cpbabies,UMSA,BO,0.31947347044039265,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ historial de la universidad en el nacional,,0.15789589634186696,1440.3333333333333
+12,DIV5： Las Wawas del LuchXDD,UMSA,BO,0.31947347044039265,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ historial de la universidad en el nacional,,0.15789589634186696,1440.3333333333333
+13,La niña que quiso jugar futbol,UMSA,BO,0.31947347044039265,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ historial de la universidad en el nacional,,0.15789589634186696,1440.3333333333333
+14,Los Maquinolas： The Last Dance,UMSA,BO,0.31947347044039265,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ historial de la universidad en el nacional,,0.15789589634186696,1440.3333333333333
+15,Runtime Terror,UMSA,BO,0.31947347044039265,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ historial de la universidad en el nacional,,0.15789589634186696,1440.3333333333333
+16,candi_ositos club de fans,UMSA,BO,0.31947347044039265,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ historial de la universidad en el nacional,,0.15789589634186696,1440.3333333333333
+17,Credo Ut Intelligam,UCB-Tarija,BO,0.32241032740978404,↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional; ↑ regionales jugadas por la universidad,0.7491039426523297,0.3995559791403831,1368.6666666666667
+18,StarCode,UTO,BO,0.32412418085449457,↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional; ↑ mejor rating CF de la universidad,0.7285714285714285,0.41769597922444257,1056.3333333333333
+19,Abstract,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+20,Api con pastel,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+21,Gallos Primo,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+22,Joan y sus amigos,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+23,LOS 10^1,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+24,Los desquiciados,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+25,Los leticianos,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+26,Los proyectados,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+27,MAGIC MIKE,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+28,No tenemos nombre pero tenemos fé,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+29,Sal de mi cabeza： última advertencia,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+30,SigmasInzanos67,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+31,Toy cansado gfe,UMSS,BO,0.3283491973248832,↑ rating CF de los 3 mejores de la universidad; ↓ nacionales jugados por la universidad; ↓ resultado previo del equipo,,0.20679222995834917,1834.0
+32,Team_Limit,UPDS,BO,0.33097557946347467,↑ veces que el equipo compitió antes; ↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,0.7903225806451613,0.5734294319344584,1198.5
+33,A++,UCB-Santa Cruz,BO,0.36254393928458667,↓ nacionales jugados por la universidad; ↑ veces que el equipo compitió antes; ↑ su último resultado fue en el nacional,0.9354838709677419,0.3995559791403831,1368.6666666666667
+34,BOSCOSOFT,UATF-II,BO,0.38654229255500205,↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional; ↑ resultado previo del equipo,0.6938775510204082,0.5577611504588049,1372.0
+35,SYNTAX TERROR,UTO - Challapata,BO,0.3875998415230515,↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional; ↑ mejor rating CF de la universidad,0.9014336917562724,0.41769597922444257,1056.3333333333333
+36,Team Cocos,UATF-IS,BO,0.3883956357278738,↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional; ↑ resultado previo del equipo,0.6989247311827957,0.5577611504588049,1372.0
+37,==true,UPBLP,BO,0.39874996269323354,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ regionales jugadas por la universidad,,0.25075228436928443,1471.6666666666667
+38,Claudeless,UPB Santa Cruz,BO,0.39874996269323354,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ regionales jugadas por la universidad,,0.25075228436928443,1471.6666666666667
+39,CodeTesters,UPBLP,BO,0.39874996269323354,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ regionales jugadas por la universidad,,0.25075228436928443,1471.6666666666667
+40,FMA_Code Makers,UPB - Cbba,BO,0.39874996269323354,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ regionales jugadas por la universidad,,0.25075228436928443,1471.6666666666667
+41,I CANT PROGRAM CORRECTLY (ICPC),UPBLP,BO,0.39874996269323354,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ regionales jugadas por la universidad,,0.25075228436928443,1471.6666666666667
+42,Los default,UPB - Cbba,BO,0.39874996269323354,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ regionales jugadas por la universidad,,0.25075228436928443,1471.6666666666667
+43,Solovino678,UPBLP,BO,0.39874996269323354,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ regionales jugadas por la universidad,,0.25075228436928443,1471.6666666666667
+44,con fe,UPBLP,BO,0.39874996269323354,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ regionales jugadas por la universidad,,0.25075228436928443,1471.6666666666667
+45,Maravill-IA,UPC,BO,0.4222300222673411,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+46,DORAMAS,EMI,BO,0.4396371171956782,↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional; ↑ veces que el equipo compitió antes,0.7634408602150538,0.4861702906392864,1112.0
+47,Los Pythones,UAJMS,BO,0.44997106606281667,↓ su último resultado fue en el nacional; ↑ resultado previo del equipo; ↓ nacionales jugados por la universidad,0.36548223350253806,0.5081131380922363,1393.0
+48,Ada Squad,UCB-Cochabamba,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+49,Charlie & los Kirks,UCB-Cochabamba,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+50,ElCeroNoEsNatural,UCB,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+51,Equipo,UCB-Cochabamba,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+52,Equipo Hail Mary,UCB-Santa Cruz,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+53,Glorp,UCB-Cochabamba,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+54,KREPS,UCB,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+55,LOS POLINOMIOS,UCB La Paz,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+56,Lazarus,UCB-Santa Cruz,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+57,Los chambafóbicos,UCB-Cochabamba,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+58,Mapaches Chambeadores sin Chamba,UCB-Cochabamba,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+59,Midnight Coders,UCB-Santa Cruz,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+60,O(N^3) y Orgullosos,UCB-Santa Cruz,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+61,RootForce,UCB-Santa Cruz,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+62,V-max,UCB-Santa Cruz,BO,0.4819464027308332,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.3995559791403831,1368.6666666666667
+63,Escuadron Hoppers,UTO,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+64,La red flag y sus pastos,UTO,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+65,La venganza del Dream Team,UTO,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+66,Las Pasankallas,UTO,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+67,Los Codezilla,UTO,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+68,Los depuradores,UTO,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+69,Mafia Latina,UTO - Challapata,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+70,NO ERA GREEDY,UTO,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+71,Polyglot Code,Universidad Tecnica de Oruro - Ingenieria Mecatronica,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+72,RUNTIME TERROR,UTO - Challapata,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+73,SQL-ITO,UTO - Challapata,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+74,Sin WA no hay paraíso： Jairo The Last Dance,UTO,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+75,The intifada of code,UTO,BO,0.49119987108315377,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.41769597922444257,1056.3333333333333
+76,Capitán Lara y los Pythones,UAJMS BERMEJO,BO,0.49416075091136913,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5081131380922363,1393.0
+77,ChatGPT3,UAJMS BERMEJO,BO,0.49416075091136913,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5081131380922363,1393.0
+78,Control Z,UAJMS BERMEJO,BO,0.49416075091136913,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5081131380922363,1393.0
+79,Dark Army,UAJMS BERMEJO,BO,0.49416075091136913,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5081131380922363,1393.0
+80,"Os vaciadinhos (Tomara que ñao houvesse dinheiro, ha dinheiro negativo)",UAJMS,BO,0.49416075091136913,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5081131380922363,1393.0
+81,c--,USFX-Chuquisaca,BO,0.5003968363026268,↓ su último resultado fue en el nacional; ↑ resultado previo del equipo; ↑ mejor rating CF de la universidad,0.41624365482233505,0.5362583403789734,835.0
+82,Quantum Coders,UV-La Paz,BO,0.5075601960992255,↓ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional; ↑ regionales jugadas por la universidad,0.8512544802867383,0.519516766201791,
+83,Al Borde del TLE,USFX-Chuquisaca,BO,0.5259467400018162,↑ mejor rating CF de la universidad; ↓ rating CF de los 3 mejores de la universidad; ↓ resultado previo del equipo,,0.5362583403789734,835.0
+84,Cookies,USFX,BO,0.5259467400018162,↑ mejor rating CF de la universidad; ↓ rating CF de los 3 mejores de la universidad; ↓ resultado previo del equipo,,0.5362583403789734,835.0
+85,El Último Nodo,USFX-Chuquisaca,BO,0.5259467400018162,↑ mejor rating CF de la universidad; ↓ rating CF de los 3 mejores de la universidad; ↓ resultado previo del equipo,,0.5362583403789734,835.0
+86,Los Push del Viernes a las 5 PM,USFX-Chuquisaca,BO,0.5259467400018162,↑ mejor rating CF de la universidad; ↓ rating CF de los 3 mejores de la universidad; ↓ resultado previo del equipo,,0.5362583403789734,835.0
+87,Los ex's de mi hermana,USFX,BO,0.5259467400018162,↑ mejor rating CF de la universidad; ↓ rating CF de los 3 mejores de la universidad; ↓ resultado previo del equipo,,0.5362583403789734,835.0
+88,"No toquen, funciona por brujería",USFX-Chuquisaca,BO,0.5259467400018162,↑ mejor rating CF de la universidad; ↓ rating CF de los 3 mejores de la universidad; ↓ resultado previo del equipo,,0.5362583403789734,835.0
+89,Pachequitos Final Form,USFX-Chuquisaca,BO,0.5259467400018162,↑ mejor rating CF de la universidad; ↓ rating CF de los 3 mejores de la universidad; ↓ resultado previo del equipo,,0.5362583403789734,835.0
+90,PyCoders++,USFX-Chuquisaca,BO,0.5259467400018162,↑ mejor rating CF de la universidad; ↓ rating CF de los 3 mejores de la universidad; ↓ resultado previo del equipo,,0.5362583403789734,835.0
+91,TPF,USFX-Chuquisaca,BO,0.5259467400018162,↑ mejor rating CF de la universidad; ↓ rating CF de los 3 mejores de la universidad; ↓ resultado previo del equipo,,0.5362583403789734,835.0
+92,CASI GANAMOS,UPDS-Tarija,BO,0.5319875894558028,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5734294319344584,1198.5
+93,EquipoAlfaBuenaMaravillaOndaDinamitaEscuadronLobo,UPDS,BO,0.5319875894558028,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5734294319344584,1198.5
+94,Pythonsitos,UPDS,BO,0.5319875894558028,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5734294319344584,1198.5
+95,chicasmaravillas,UPDS,BO,0.5319875894558028,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5734294319344584,1198.5
+96,error_sintaxis,UPDS,BO,0.5319875894558028,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5734294319344584,1198.5
+97,sega,UPDS,BO,0.5319875894558028,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5734294319344584,1198.5
+98,undefined_,UPDS,BO,0.5319875894558028,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5734294319344584,1198.5
+99,upds_0,UPDS,BO,0.5319875894558028,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5734294319344584,1198.5
+100,Api con Pastel,UDABOL-Oruro,BO,0.5338059211853937,↑ mejor rating CF de la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.6582996424740228,964.0
+101,Kernel Panic,UDABOL-Santa Cruz,BO,0.5338059211853937,↑ mejor rating CF de la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.6582996424740228,964.0
+102,Modo Avion,UDABOL-Santa Cruz,BO,0.5338059211853937,↑ mejor rating CF de la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.6582996424740228,964.0
+103,ApexCode,UATF-II,BO,0.5663577025937054,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5577611504588049,1372.0
+104,Bugueados pero felices,UATF-IS,BO,0.5663577025937054,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5577611504588049,1372.0
+105,Codigo 0,UATF,BO,0.5663577025937054,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5577611504588049,1372.0
+106,LARPs,UATF-II,BO,0.5663577025937054,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5577611504588049,1372.0
+107,Las wawitas de Juan Jose： Requiem,UATF-IS,BO,0.5663577025937054,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5577611504588049,1372.0
+108,"Patitas de pollo ""The last dance""",UATF-IS,BO,0.5663577025937054,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5577611504588049,1372.0
+109,TEAM SPTM,UATF-II,BO,0.5663577025937054,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5577611504588049,1372.0
+110,Tech Titans： Reboot,UATF,BO,0.5663577025937054,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5577611504588049,1372.0
+111,Lambda,UAB-La Paz,BO,0.5804943802067646,↑ resultado previo del equipo; ↓ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad,0.164021164021164,0.5111733582321817,
+112,Jorge y los curiosos,UATF-IS,BO,0.5855432736529872,↓ su último resultado fue en el nacional; ↑ resultado previo del equipo; ↓ nacionales jugados por la universidad,0.5380710659898477,0.5577611504588049,1372.0
+113,404_Founders,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+114,Cerberus,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+115,Codewarriors,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+116,Las Código Pink,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+117,Los /caveman,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+118,Los_+_buscados,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+119,Oreo Devs,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+120,Pixelitos Team,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+121,Root@team,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+122,S_k_ta,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+123,"cout<<""Ya fue"";",EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+124,firewalls,EMI,BO,0.5939086235039324,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.4861702906392864,1112.0
+125,CambitasUX,UEB,BO,0.6003154662265827,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+126,EC8 - Error de Capa 8,UEB,BO,0.6003154662265827,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+127,Hamburguesas Triple Tocino Por Salir - HTTPS,UEB,BO,0.6003154662265827,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+128,Hardcode,UEB,BO,0.6003154662265827,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+129,INTJEM PRO,ITJM 2 - SI,BO,0.6066201420451992,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+130,JavaBros,INSCO,BO,0.6066201420451992,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+131,Anxie-Tea,UAGRM,BO,0.6114321415126645,↓ rating CF de los 3 mejores de la universidad; ↑ mejor rating CF de la universidad; ↓ nacionales jugados por la universidad,,0.6351176981414863,371.0
+132,Caballero hace lo suyo y se retira,UAGRM,BO,0.6114321415126645,↓ rating CF de los 3 mejores de la universidad; ↑ mejor rating CF de la universidad; ↓ nacionales jugados por la universidad,,0.6351176981414863,371.0
+133,En mi PC sí le da,UAGRM,BO,0.6114321415126645,↓ rating CF de los 3 mejores de la universidad; ↑ mejor rating CF de la universidad; ↓ nacionales jugados por la universidad,,0.6351176981414863,371.0
+134,Guiso Noodle,UAGRM,BO,0.6114321415126645,↓ rating CF de los 3 mejores de la universidad; ↑ mejor rating CF de la universidad; ↓ nacionales jugados por la universidad,,0.6351176981414863,371.0
+135,Kamikazes,UAGRM,BO,0.6114321415126645,↓ rating CF de los 3 mejores de la universidad; ↑ mejor rating CF de la universidad; ↓ nacionales jugados por la universidad,,0.6351176981414863,371.0
+136,Logicdev,UAGRM,BO,0.6114321415126645,↓ rating CF de los 3 mejores de la universidad; ↑ mejor rating CF de la universidad; ↓ nacionales jugados por la universidad,,0.6351176981414863,371.0
+137,QUERY MART CRUD SEEDERS,UAGRM,BO,0.6114321415126645,↓ rating CF de los 3 mejores de la universidad; ↑ mejor rating CF de la universidad; ↓ nacionales jugados por la universidad,,0.6351176981414863,371.0
+138,Team 67,UAGRM,BO,0.6114321415126645,↓ rating CF de los 3 mejores de la universidad; ↑ mejor rating CF de la universidad; ↓ nacionales jugados por la universidad,,0.6351176981414863,371.0
+139,ahjin,UAGRM,BO,0.6114321415126645,↓ rating CF de los 3 mejores de la universidad; ↑ mejor rating CF de la universidad; ↓ nacionales jugados por la universidad,,0.6351176981414863,371.0
+140,Evo Pueblo,UNICEN,BO,0.6143014394886352,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+141,Los NNN,UNICEN,BO,0.6143014394886352,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+142,domde están los Programmers?,UNICEN,BO,0.6143014394886352,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+143,Error 404： Nombre no encontrado,UPDSO - IdS,BO,0.6181420882103532,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+144,Marauders,UPDSO - IdS,BO,0.6181420882103532,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+145,Team Delta,UPDSO - IdS,BO,0.6181420882103532,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+146,Women in code,UPDSO - IdS,BO,0.6181420882103532,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+147,Algoritmos Tiwanaku,Univalle Scz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+148,Anonymous programming,UV-Sucre,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+149,Bit Busters,UV-La Paz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+150,Ciberhack,UV-La Paz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+151,Claude - Lovers,Univalle Scz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+152,Error 37,UV-Sucre,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+153,Japi Fits,Univalle Scz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+154,Kill the Bug,Univalle Scz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+155,Los Zancudos Developer,UV-Sucre,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+156,Los rocoqueros,Univalle Scz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+157,MAJ_CODE;,UV-La Paz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+158,MVVM,Univalle Scz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+159,Out of Bounds,UV-La Paz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+160,RAMbo,UV-Sucre,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+161,TRIPLE-A,UV-Sucre,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+162,Tortilleros++,Univalle Scz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+163,cypher,Univalle Scz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+164,kali,Univalle Scz,BO,0.6295862172041103,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.519516766201791,
+165,CIPHER,UPEA,BO,0.6329477300641807,↓ resultado previo del equipo; ↑ su último resultado fue en el nacional; ↓ regionales jugadas por la universidad,,0.38578680203045684,
+166,CODE3,UABJB,BO,0.6335046830972252,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+167,F#ck_Microsoft,UABJB,BO,0.6335046830972252,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+168,LOGOS TEAM,UABJB,BO,0.6335046830972252,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+169,Late Night Loops,UABJB,BO,0.6335046830972252,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+170,Los Data miner,UABJB,BO,0.6335046830972252,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+171,Six Seven,UABJB,BO,0.6335046830972252,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+172,Team spica,UABJB,BO,0.6335046830972252,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+173,helloworld.py,UABJB,BO,0.6335046830972252,↓ resultado previo del equipo; ↑ nacionales jugados por la universidad; ↑ su último resultado fue en el nacional,,,
+174,La carreada,UATF-IS,BO,0.6414626171010762,↓ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad; ↑ resultado previo del equipo,0.6903553299492385,0.5577611504588049,1372.0
+175,3 Smithsitos - UTEPSA,UTEPSA,BO,0.6498433322517403,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5485383380650625,
+176,HeapOverFlow-UTEPSA,UTEPSA,BO,0.6498433322517403,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5485383380650625,
+177,Qubit-UTEPSA,UTEPSA,BO,0.6498433322517403,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.5485383380650625,
+178,Los bots,Ucatec,BO,0.6549928061236234,↓ resultado previo del equipo; ↑ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad,,0.6988431539043662,
+179,Snakil.com,Ucatec,BO,0.6549928061236234,↓ resultado previo del equipo; ↑ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad,,0.6988431539043662,
+180,"print(""hello world"")",Ucatec,BO,0.6549928061236234,↓ resultado previo del equipo; ↑ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad,,0.6988431539043662,
+181,MedicosDelCodigo,UNITEPC,BO,0.6611438221578019,↓ su último resultado fue en el nacional; ↑ resultado previo del equipo; ↑ veces que el equipo compitió antes,0.5329949238578681,0.668811260795601,
+182,Los caperucitos,USFA,BO,0.6688190549358758,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.7337997303326921,
+183,Los wachiturros,USFA,BO,0.6688190549358758,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.7337997303326921,
+184,Ondindindon,USFA,BO,0.6688190549358758,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.7337997303326921,
+185,Problem Solver 68,USFA,BO,0.6688190549358758,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.7337997303326921,
+186,UWU,USFA,BO,0.6688190549358758,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.7337997303326921,
+187,Wrong Answer,USFA,BO,0.6688190549358758,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↑ su último resultado fue en el nacional,,0.7337997303326921,
+188,CodeValle,UV-La Paz,BO,0.691643284906927,↓ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad; ↑ resultado previo del equipo,0.6548223350253807,0.519516766201791,
+189,Tokenizers,UNIOR,BO,0.6934738227141194,↓ mejor resultado de la universidad en el nacional (3 años); ↓ historial de la universidad en el nacional; ↓ resultado previo del equipo,,0.8324873096446701,
+190,Virtual Pinkis,UNSXX- II,BO,0.6973157321087544,↓ nacionales jugados por la universidad; ↑ veces que el equipo compitió antes; ↓ resultado previo del equipo,0.9982078853046595,0.7606958180903495,
+191,Golem De Hielo,UAB-La Paz,BO,0.6986613128867307,↓ resultado previo del equipo; ↑ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad,,0.5111733582321817,
+192,Inteligencia Muy Artificial,UAB-La Paz,BO,0.6986613128867307,↓ resultado previo del equipo; ↑ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad,,0.5111733582321817,
+193,Triple byte,UAB-La Paz,BO,0.6986613128867307,↓ resultado previo del equipo; ↑ su último resultado fue en el nacional; ↓ nacionales jugados por la universidad,,0.5111733582321817,
+194,Algoritmo,UNITEPC,BO,0.700433799796521,↓ resultado previo del equipo; ↑ su último resultado fue en el nacional; ↓ mejor resultado de la universidad en la regional (3 años),,0.668811260795601,
+195,Casi Compila,UNSXX- II,BO,0.7131181659948985,↓ nacionales jugados por la universidad; ↓ historial de la universidad en el nacional; ↑ Elo de la universidad,0.96415770609319,0.7606958180903495,
+196,BJP Code Lab,UAP,BO,0.7564319693817079,↓ historial de la universidad en el nacional; ↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo,,0.8285940638881815,
+197,Bycraft,UAP,BO,0.7564319693817079,↓ historial de la universidad en el nacional; ↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo,,0.8285940638881815,
+198,CMA CodeLab,UAP,BO,0.7564319693817079,↓ historial de la universidad en el nacional; ↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo,,0.8285940638881815,
+199,Code Group,UAP,BO,0.7564319693817079,↓ historial de la universidad en el nacional; ↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo,,0.8285940638881815,
+200,Compila y Reza,UAP,BO,0.7564319693817079,↓ historial de la universidad en el nacional; ↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo,,0.8285940638881815,
+201,Compiló en mi Laptop,UAP,BO,0.7564319693817079,↓ historial de la universidad en el nacional; ↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo,,0.8285940638881815,
+202,Chocos++,UNIFRANZ,BO,0.7724082653311128,↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.8022485926124538,
+203,Ctrl + C,UNIFRANZ,BO,0.7724082653311128,↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.8022485926124538,
+204,Ctrl + V,UNIFRANZ,BO,0.7724082653311128,↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.8022485926124538,
+205,FUMI,UNIFRANZ-La Paz,BO,0.7724082653311128,↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.8022485926124538,
+206,Gothyk,UNIFRANZ,BO,0.7724082653311128,↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.8022485926124538,
+207,Spice Girls,UNIFRANZ,BO,0.7724082653311128,↓ mejor resultado de la universidad en el nacional (3 años); ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.8022485926124538,
+208,Anti Ban,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+209,Botsitos.exe,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+210,CODE PICHON,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+211,Claude Code,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+212,CodeMantikos,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+213,DarkStars,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+214,Dola,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+215,Error 404,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+216,GENESIS,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+217,GODIGO 404,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+218,Golden,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+219,Las Abejitas,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+220,Las Javas,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+221,Los Genomas,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+222,Los Tralaleritos,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+223,NO ERA RECURSIVO,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+224,PIXELES,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+225,StarsOlympus,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+226,Trio Dinamico,UNSXX- II,BO,0.7936857061240228,↓ nacionales jugados por la universidad; ↓ resultado previo del equipo; ↓ historial de la universidad en el nacional,,0.7606958180903495,
+227,IDK,UNIFRANZ,BO,0.8751267379950404,↓ su último resultado fue en el nacional; ↓ mejor resultado de la universidad en el nacional (3 años); ↓ historial de la universidad en el nacional,0.8426395939086294,0.8022485926124538,

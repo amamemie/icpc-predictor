@@ -116,6 +116,20 @@ icpc-predictor/
 └── notebooks/
 ```
 
+Comandos (en orden; cada uno re-ejecutable):
+
+```
+python -m scrapers.codeforces candidatos && python -m scrapers.codeforces historiales
+python -m scrapers.scorelatam descargar && python -m scrapers.scorelatam cargar
+python -m scrapers.validar_resultados
+python -m matching.integrantes plantilla | cargar | cobertura
+python -m features.build_dataset          # data/dataset.parquet
+python -m models.evaluate                 # reports/fase6_baseline.md
+python -m models.explicar                 # reports/fase7_shap.md
+python -m models.predict inscritos.csv --tipo nacional --fecha AAAA-MM-DD --nombre X
+streamlit run app/app.py
+```
+
 Pipeline por etapas, cada una independiente y re-ejecutable:
 
 ```
@@ -241,10 +255,10 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 7 — Modelos de ML
 **Objetivo:** superar al baseline.
-- [ ] Ridge sobre el percentil.
-- [ ] LightGBM `LambdaRank` (grupo = competencia); tuning con Optuna usando validación temporal (sin tocar el test).
+- [x] Ridge sobre el percentil. *(Adelantado, `models/modelos.py`.)*
+- [ ] LightGBM `LambdaRank` (grupo = competencia); tuning con Optuna usando validación temporal (sin tocar el test). *(Adelantado sin Optuna: hiperparámetros fijos; con estos datos el tuning sobreajustaría.)*
 - [ ] (Opcional) TrueSkill / Bradley-Terry.
-- [ ] SHAP para entender qué features pesan.
+- [x] SHAP para entender qué features pesan. *(Adelantado: `python -m models.explicar` → `reports/fase7_shap.md`.)*
 - [ ] Reporte comparativo en `reports/fase7_modelos.md`.
 
 **Entregable:** modelo final guardado (`models/artifacts/`).
@@ -252,10 +266,10 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 8 — Predicción de la próxima competencia y demo
 **Objetivo:** usar el sistema de verdad. *(Al 2026-11-20 la única competencia de 2026 que falta es Programadores de América `pda26`; las siguientes del alcance del MVP son el nacional y la regional de 2027.)*
-- [ ] Script `predict.py` que recibe la lista de equipos inscritos (CSV: equipo, universidad, integrantes/handles) y devuelve el ranking predicho.
+- [x] Script `predict.py` que recibe la lista de equipos inscritos (CSV: equipo, universidad, integrantes/handles) y devuelve el ranking predicho. *(Adelantado: `python -m models.predict`; por ahora ignora integrantes/handles.)*
 - [ ] Actualizar ratings justo antes de la competencia.
-- [ ] Demo Streamlit (`app/`): cargar equipos, ver ranking predicho y explicación por equipo.
-- [ ] Guardar la predicción con fecha para compararla después.
+- [x] Demo Streamlit (`app/`): cargar equipos, ver ranking predicho y explicación por equipo. *(Adelantado: `streamlit run app/app.py`; modos re-jugar competencia pasada y subir inscritos.)*
+- [x] Guardar la predicción con fecha para compararla después. *(Adelantado: `data/predicciones/<fecha>_<nombre>.csv`.)*
 
 **Entregable:** predicción publicada antes de la competencia.
 **Listo cuando:** existe la predicción guardada y, tras la competencia, un reporte predicción vs resultado real.
@@ -368,4 +382,12 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
     - Con estas features los modelos de ML **no superan** a las heurísticas simples: la información útil está concentrada en 1–2 variables. El techo sin integrantes ronda Spearman ≈ 0.5 en el nacional y ≈ 0.7 en la regional (donde el resultado del mismo equipo en el nacional de ese año ya anticipa mucho).
     - Lo que más falta en el nacional son features del propio equipo (integrantes/ratings): ~2/3 de los equipos no tienen historial con el mismo nombre.
   - Hiperparámetros fijos y conservadores (sin Optuna): con estos datos el tuning arriesga sobreajustar al backtest.
+- 2026-11-21 — Fase 3 — **Adelantado de las Fases 7 y 8 (el usuario pidió continuar con lo óptimo sin integrantes):** el MVP ya funciona de punta a punta sin integrantes.
+  - `features/elo.py`: Elo de universidades competencia a competencia (todos contra todos según el mejor equipo de cada universidad; K/(n−1); mismo día = sin ver resultados entre sí). Solo, predice peor que el historial simple (backtest nacional 0.37, regional 0.47); se deja como feature más del Ridge.
+  - Ensamble por promedio de rangos de 4 heurísticas: no supera a la mejor heurística individual (backtest nacional 0.51, regional 0.60).
+  - **Modelo elegido para predecir: Ridge** (backtest 0.50 nacional / 0.63 regional): casi tan bueno como la mejor heurística de cada tipo, uno solo para ambos y explicable (contribución lineal por feature).
+  - SHAP (`reports/fase7_shap.md`): pesan sobre todo el resultado previo del mismo equipo y el talento CF de la universidad (usuarios activos, rating de los mejores), luego el historial de la universidad en el nacional. En Ridge, "nacionales jugados por la universidad" tiene signo contraintuitivo (las universidades grandes juegan todos los nacionales pero inscriben muchos equipos flojos).
+  - `models/predict.py`: features "a la fecha" de equipos nuevos (mismas funciones que el dataset) y Ridge entrenado solo con competencias anteriores a la fecha. Re-jugar el nacional 2026 da exactamente el Spearman de la evaluación (0.482) → pipeline coherente. En ese replay acierta 2 del top 10 real en el nacional; en la regional 2026, 9/10.
+  - `app/app.py` (Streamlit), verificado con `streamlit.testing.AppTest`: sin excepciones en nacional 2026, regional 2026 y regional 2019 (sin historia previa → aviso).
+  - Dependencias opcionales nuevas en `pyproject.toml`: `analisis` (shap) y `app` (streamlit); `pyarrow` en las base.
 

@@ -102,3 +102,16 @@ def test_sin_fuga_de_informacion():
     pd.testing.assert_frame_equal(base.loc[previas], nuevo.loc[previas])
     regional = [5, 6]  # regional 2024: solo se alteró su propio resultado, no su historial
     pd.testing.assert_frame_equal(base.loc[regional], nuevo.loc[regional])
+
+
+def test_elo_a_la_fecha_ganador_sube_y_sin_fuga():
+    from features.elo import ELO_INICIAL, elo_a_la_fecha
+
+    df = _df(FILAS)
+    elo = elo_a_la_fecha(df).set_index("equipo_id")
+    # Primera competencia: todos con Elo inicial.
+    assert elo.loc[1, "uni_elo"] == ELO_INICIAL and elo.loc[2, "uni_elo"] == ELO_INICIAL
+    # En la regional 2024, UMSS (ganó el nacional) ya está por encima de UMSA.
+    assert elo.loc[5, "uni_elo"] > elo.loc[6, "uni_elo"]
+    assert elo.loc[5, "uni_elo_partidas"] == 1
+    assert pd.isna(elo.loc[4, "uni_elo"])  # sin universidad

@@ -15,6 +15,7 @@ Features: ver features/universidad.py y features/universidad_cf.py. Todas "a la 
 import pandas as pd
 
 from db.crear import RAIZ, RUTA_DB, conectar
+from features.elo import elo_a_la_fecha
 from features.universidad import cargar_resultados, construir_features
 from features.universidad_cf import cargar_historial_por_universidad, features_cf_universidad
 
@@ -53,6 +54,7 @@ def construir_dataset(conn) -> pd.DataFrame:
     df = df.merge(bo[["equipo_id", "pos_bo", "n_bo", "pct_bo"]], on="equipo_id", how="left")
 
     df = df.merge(construir_features(df).drop(columns="competencia_id"), on="equipo_id")
+    df = df.merge(elo_a_la_fecha(df), on="equipo_id")
 
     hist = cargar_historial_por_universidad(conn)
     cache: dict = {}

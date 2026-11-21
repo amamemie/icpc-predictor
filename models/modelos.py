@@ -27,6 +27,8 @@ FEATURES = [
     "uni_cf_usuarios_12m",
     "uni_cf_max_rating",
     "uni_cf_top3_rating",
+    "uni_elo",
+    "uni_elo_partidas",
 ]
 
 
@@ -40,8 +42,11 @@ def matriz(df: pd.DataFrame) -> pd.DataFrame:
     return x[FEATURES]
 
 
-def ridge(train: pd.DataFrame, test: pd.DataFrame) -> np.ndarray:
-    """Ridge sobre pct_bo; faltantes = mediana del train + indicador de faltante."""
+def preparar_ridge(train: pd.DataFrame, test: pd.DataFrame):
+    """Entrena Ridge sobre pct_bo y devuelve (modelo, matriz de test lista para predecir).
+
+    Faltantes = mediana del train + indicador de faltante por feature.
+    """
     xtr, xte = matriz(train), matriz(test)
     medianas = xtr.median()
     for x in (xtr, xte):
@@ -51,7 +56,12 @@ def ridge(train: pd.DataFrame, test: pd.DataFrame) -> np.ndarray:
         x.fillna(0.0, inplace=True)  # columnas sin ningún dato en el train
     modelo = make_pipeline(StandardScaler(), Ridge(alpha=10.0))
     modelo.fit(xtr, train["pct_bo"])
-    return modelo.predict(xte[xtr.columns])
+    return modelo, xte[xtr.columns]
+
+
+def ridge(train: pd.DataFrame, test: pd.DataFrame) -> np.ndarray:
+    modelo, xte = preparar_ridge(train, test)
+    return modelo.predict(xte)
 
 
 def _etiquetas_relevancia(df: pd.DataFrame, niveles: int = 10) -> np.ndarray:

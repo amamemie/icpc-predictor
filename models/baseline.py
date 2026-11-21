@@ -44,9 +44,37 @@ def rating_cf_universidad(train: pd.DataFrame, test: pd.DataFrame) -> np.ndarray
     return -_primero_disponible(test, ["uni_cf_top3_rating"], defecto=0.0)
 
 
+def elo_universidad(train: pd.DataFrame, test: pd.DataFrame) -> np.ndarray:
+    """Elo de la universidad antes de la competencia (sin universidad: Elo inicial)."""
+    return -_primero_disponible(test, ["uni_elo"], defecto=1500.0)
+
+
+def _rango(puntajes: np.ndarray) -> np.ndarray:
+    return pd.Series(puntajes).rank(method="average").to_numpy() / len(puntajes)
+
+
+def ensamble(train: pd.DataFrame, test: pd.DataFrame) -> np.ndarray:
+    """Promedio de rangos de equipo previo, historial, Elo y rating CF de la universidad.
+
+    Cada heurística se ordena dentro de su competencia (tipo) para que sean comparables.
+    """
+    total = np.zeros(len(test))
+    for slug in test["slug"].unique():
+        m = (test["slug"] == slug).to_numpy()
+        sub = test[m]
+        total[m] = np.mean(
+            [_rango(f(train, sub)) for f in
+             (equipo_previo, historial_universidad, elo_universidad, rating_cf_universidad)],
+            axis=0,
+        )
+    return total
+
+
 MODELOS_BASE = {
     "azar": azar,
     "historial_universidad": historial_universidad,
     "equipo_previo": equipo_previo,
     "rating_cf_universidad": rating_cf_universidad,
+    "elo_universidad": elo_universidad,
+    "ensamble": ensamble,
 }
