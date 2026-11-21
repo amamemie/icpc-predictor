@@ -20,7 +20,7 @@ Idioma del proyecto: español (código y nombres de variables pueden ir en ingl�
 - ICPC Bolivia (nacional) + regional Latinoamérica.
 - Últimos 3–5 años.
 - **Solo Codeforces** como fuente de rating.
-- Emparejamiento persona→handle semimanual.
+- Emparejamiento persona→handle semimanual. *(Pospuesto el 2026-11-21: no hay fuente de integrantes; el MVP se cerró sin ellos, ver sección 14.)*
 - Baseline + un modelo simple, evaluado temporalmente.
 
 **Después:** AtCoder, CodeChef, matching más automático, más países, demo pública.
@@ -176,7 +176,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ## 11. Fases del proyecto
 
-> **Fase actual: FASE 3** (actualizar esta línea al cerrar cada fase).
+> **Fase actual: FASE 8** — MVP cerrado **sin integrantes** (2026-11-21). Fases 3 y 4 pospuestas; falta cumplir el "Listo cuando" de la Fase 8 con la próxima competencia (actualizar esta línea al cerrar cada fase).
 >
 > Reglas: no empezar una fase sin cumplir el "Listo cuando" de la anterior (salvo donde se indique que pueden ir en paralelo). Al cerrar una fase, marcar sus casillas y anotar decisiones/aprendizajes en la sección 14.
 
@@ -212,7 +212,8 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 **Entregable:** todas las competencias de `competencias.csv` cargadas.
 **Listo cuando:** la validación pasa para el 100 % de las competencias objetivo.
 
-### FASE 3 — Integrantes de los equipos
+### FASE 3 — Integrantes de los equipos — ⏸ POSPUESTA (2026-11-21)
+*Pospuesta: el usuario no tiene acceso a los integrantes y ninguna fuente pública los da. El MVP se cerró sin ellos. Se retoma si aparece una fuente (aunque sea solo el top del nacional: el pipeline ya los carga con `python -m matching.integrantes cargar`).*
 **Objetivo:** saber qué personas formaban cada equipo.
 - [ ] Extraer integrantes de páginas de equipo (icpc.global), cphof.org, contests jugados con handles (CF/Gym). *(Inventario hecho: ninguna da integrantes de equipos bolivianos de forma automática; solo blogs de CF copiados a mano. Ver sección 14.)*
 - [ ] Completar faltantes con fuentes locales (universidades, clubes, coaches) en `data/manual/integrantes.csv`. *(Plantilla generada: 421 equipos de la regional × 4 filas; `python -m matching.integrantes plantilla [--nacional]`. Falta llenarla.)*
@@ -222,7 +223,8 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 **Entregable:** tabla `integrantes` poblada.
 **Listo cuando:** ≥ 80 % de los **equipos bolivianos en la regional** tienen sus 3 integrantes identificados (registrar el % real); la cobertura del nacional se reporta aparte.
 
-### FASE 4 — Resolución de identidad (persona → handle)
+### FASE 4 — Resolución de identidad (persona → handle) — ⏸ POSPUESTA (2026-11-21)
+*Pospuesta: depende de la Fase 3.*
 **Objetivo:** vincular cada persona con sus cuentas.
 - [ ] `matching/candidatos.py`: candidatos desde los usuarios CF de la Fase 1 (+ mismo handle en otras plataformas, clist.by).
 - [ ] `matching/scoring.py`: puntaje por nombre (rapidfuzz), universidad, país, coherencia temporal, parecido handle-nombre.
@@ -236,8 +238,8 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 
 ### FASE 5 — Features y dataset de entrenamiento
 **Objetivo:** una tabla lista para ML, sin fuga de información.
-- [ ] `features/build_features.py`: features por persona y por equipo de la sección 7, **calculadas a la fecha de cada competencia**. *(Adelantado en la Fase 3, con aprobación del usuario: `features/universidad.py` con historial de universidad y de equipo. Faltan las features por persona/rating, que dependen de los integrantes.)*
-- [ ] Manejo de cold start (`sin_rating`, valores por defecto).
+- [x] `features/build_features.py`: features por persona y por equipo de la sección 7, **calculadas a la fecha de cada competencia**. *(Adelantado en la Fase 3, con aprobación del usuario: `features/universidad.py` con historial de universidad y de equipo. Faltan las features por persona/rating, que dependen de los integrantes.)* *(Cerrado sin integrantes: features de universidad, equipo, CF por universidad y Elo. Las de persona/rating quedan para cuando haya integrantes.)*
+- [x] Manejo de cold start (`sin_rating`, valores por defecto). *(Faltantes = NaN; Ridge usa mediana + indicador de faltante, LightGBM los maneja de forma nativa.)*
 - [x] Target: percentil = posición / n_equipos. *(Adelantado: `pct` y `pct_bo` en `features/build_dataset.py`; empates = posición media del bloque.)*
 - [x] Test anti-fuga: ninguna feature usa datos con fecha ≥ fecha de la competencia. *(Adelantado: para las features de universidad/equipo y de CF por universidad; repetir cuando haya features por persona.)*
 - [x] Notebook de exploración (distribuciones, correlación rating vs posición). *(Adelantado: `notebooks/exploracion.ipynb`, ejecutado y con salidas.)*
@@ -248,7 +250,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 ### FASE 6 — Baseline y marco de evaluación
 **Objetivo:** saber qué tan bien se puede predecir sin ML.
 - [x] `models/evaluate.py`: split temporal (train ≤ 2025, test 2026), métricas Spearman, Kendall tau, NDCG@10, acierto top-k. *(Adelantado: además backtest 2023–2026; se evalúa el orden de los equipos bolivianos.)*
-- [ ] `models/baseline.py`: ranking por rating máximo CF del equipo (y variante por promedio). *(Sin integrantes no es posible; sustitutos: historial de universidad, equipo previo y rating CF de la universidad.)*
+- [x] `models/baseline.py`: ranking por rating máximo CF del equipo (y variante por promedio). *(Sin integrantes no es posible; sustitutos: historial de universidad, equipo previo y rating CF de la universidad.)* *(Cerrado con sustitutos, decisión 2026-11-21: historial de universidad, equipo previo, rating CF y Elo de la universidad.)*
 - [x] Reporte de resultados en `reports/fase6_baseline.md`. *(Adelantado.)*
 
 **Entregable:** métricas del baseline.
@@ -260,9 +262,9 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 - [ ] LightGBM `LambdaRank` (grupo = competencia); tuning con Optuna usando validación temporal (sin tocar el test). *(Adelantado sin Optuna: hiperparámetros fijos; con estos datos el tuning sobreajustaría.)*
 - [ ] (Opcional) TrueSkill / Bradley-Terry.
 - [x] SHAP para entender qué features pesan. *(Adelantado: `python -m models.explicar` → `reports/fase7_shap.md`.)*
-- [ ] Reporte comparativo en `reports/fase7_modelos.md`.
+- [x] Reporte comparativo en `reports/fase7_modelos.md`. *(Modelo elegido: Ridge; no supera claramente a las heurísticas, documentado.)*
 
-**Entregable:** modelo final guardado (`models/artifacts/`).
+**Entregable:** modelo final guardado (`models/artifacts/`). *(Decisión: no hay artefacto fijo; `models/predict.py` reentrena Ridge con los datos anteriores a cada fecha, ver `reports/fase7_modelos.md`.)*
 **Listo cuando:** el mejor modelo supera al baseline en el test temporal, o se documenta por qué no y se elige el baseline.
 
 ### FASE 8 — Predicción de la próxima competencia y demo
@@ -397,4 +399,8 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - **Caché versionado** (`scrapers/http.py`): la primera respuesta queda en `<clave>.json.gz` y cada refresco crea `<clave>__<sello>.json.gz`; se lee siempre la más reciente. Así refrescar no sobrescribe `data/raw/` (convención de la sección 13).
   - Cron sugerido (no instalado): `0 6 * * 1  cd <repo> && .venv/bin/python -m scrapers.actualizar >> act.log 2>&1`.
   - AtCoder/CodeChef no se agregan todavía: sin integrantes solo servirían para la fuerza de la universidad, que ya cubre CF.
+- 2026-11-21 — **Decisión: MVP cerrado sin integrantes.** El usuario no tiene acceso a los integrantes (ni a coaches o clubes) y el inventario no encontró fuentes públicas. Evidencia para no forzarlo: aun con todos los integrantes, ~2/3 de los competidores no tienen rating CF (≈100 bolivianos activos/año vs ≈600 competidores por nacional), así que la ganancia se limitaría al top; la regional ya se predice bien sin ellos (Spearman 0.67, 9/10 del top 10 en 2026). Cambios:
+  - Fases 3 y 4 → **pospuestas** (no bloquean). Se retoman si aparece una fuente; lo más rentable sería solo el top ~15 de cada nacional y solo handles.
+  - Fases 5, 6 y 7 → cerradas con lo hecho sin integrantes. Baseline del rating del equipo reemplazado por sustitutos. Modelo elegido: **Ridge** (`reports/fase7_modelos.md`), reentrenado en cada predicción con datos anteriores a la fecha (sin artefacto fijo).
+  - **Fase actual → 8.** Para cerrarla: guardar una predicción ANTES de la próxima competencia (nacional 2027, ~agosto–septiembre; `pda26` si se decide ampliar el alcance) y, después, un reporte predicción vs real. Antes de predecir: `python -m scrapers.actualizar`.
 
