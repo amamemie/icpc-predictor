@@ -63,8 +63,15 @@ def ensamble(train: pd.DataFrame, test: pd.DataFrame) -> np.ndarray:
         m = (test["slug"] == slug).to_numpy()
         sub = test[m]
         total[m] = np.mean(
-            [_rango(f(train, sub)) for f in
-             (equipo_previo, historial_universidad, elo_universidad, rating_cf_universidad)],
+            [
+                _rango(f(train, sub))
+                for f in (
+                    equipo_previo,
+                    historial_universidad,
+                    elo_universidad,
+                    rating_cf_universidad,
+                )
+            ],
             axis=0,
         )
     return total

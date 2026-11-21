@@ -83,20 +83,34 @@ if modo == "Re-jugar competencia pasada":
     except ValueError as e:
         st.warning(str(e))
         st.stop()
-    tabla = pred.merge(real[["equipo", "universidad", "posicion_real_bo", "resueltos"]],
-                       on=["equipo", "universidad"], how="left")
+    tabla = pred.merge(
+        real[["equipo", "universidad", "posicion_real_bo", "resueltos"]],
+        on=["equipo", "universidad"],
+        how="left",
+    )
     rho = spearmanr(tabla["posicion_predicha"], tabla["posicion_real_bo"]).statistic
     k = min(10, len(tabla))
-    top = len(set(tabla.nsmallest(k, "posicion_predicha")["equipo"])
-              & set(tabla.nsmallest(k, "posicion_real_bo")["equipo"]))
+    top = len(
+        set(tabla.nsmallest(k, "posicion_predicha")["equipo"])
+        & set(tabla.nsmallest(k, "posicion_real_bo")["equipo"])
+    )
     c1, c2, c3 = st.columns(3)
     c1.metric("Equipos bolivianos", len(tabla))
     c2.metric("Spearman (predicho vs real)", f"{rho:.2f}")
     c3.metric(f"Top {k} acertados", f"{top}/{k}")
     st.dataframe(
-        tabla[["posicion_predicha", "posicion_real_bo", "equipo", "universidad", "resueltos",
-               "explicacion"]],
-        hide_index=True, width="stretch",
+        tabla[
+            [
+                "posicion_predicha",
+                "posicion_real_bo",
+                "equipo",
+                "universidad",
+                "resueltos",
+                "explicacion",
+            ]
+        ],
+        hide_index=True,
+        width="stretch",
         column_config={
             "posicion_predicha": st.column_config.NumberColumn("Pred."),
             "posicion_real_bo": st.column_config.NumberColumn("Real"),
@@ -118,8 +132,11 @@ else:
     except ValueError as e:
         st.error(str(e))
         st.stop()
-    st.dataframe(pred[["posicion_predicha", "equipo", "universidad", "explicacion"]],
-                 hide_index=True, width="stretch")
+    st.dataframe(
+        pred[["posicion_predicha", "equipo", "universidad", "explicacion"]],
+        hide_index=True,
+        width="stretch",
+    )
     nombre = st.text_input("Nombre para guardar la predicción", value=f"{tipo}-{fecha.year}")
     if st.button("Guardar predicción con fecha"):
         ruta = guardar(pred, fecha, nombre)

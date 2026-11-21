@@ -69,7 +69,14 @@ class ClienteHTTP:
 
     # --- caché ---------------------------------------------------------------
     def ruta_cache(self, url: str, params: dict[str, Any] | None = None) -> Path:
-        return self.dir_cache / f"{clave_cache(url, params)}.json.gz"
+        """Ruta de la versión más reciente en caché (o de la primera, si no hay ninguna).
+
+        La primera descarga se guarda como <clave>.json.gz; cada refresco posterior crea
+        <clave>__<AAAAMMDDTHHMMSS>.json.gz, así nunca se sobrescribe una respuesta cruda.
+        """
+        clave = clave_cache(url, params)
+        versiones = sorted(self.dir_cache.glob(f"{clave}__*.json.gz"))
+        return versiones[-1] if versiones else self.dir_cache / f"{clave}.json.gz"
 
     def leer_cache(self, url: str, params: dict[str, Any] | None = None) -> Any | None:
         ruta = self.ruta_cache(url, params)
@@ -79,7 +86,10 @@ class ClienteHTTP:
             return json.load(f)["body"]
 
     def _guardar_cache(self, url: str, params: dict[str, Any] | None, body: Any) -> None:
-        ruta = self.ruta_cache(url, params)
+        ruta = self.dir_cache / f"{clave_cache(url, params)}.json.gz"
+        if ruta.exists():  # refresco: versión nueva con fecha, sin tocar las anteriores
+            sello = datetime.now(UTC).strftime("%Y%m%dT%H%M%S%f")
+            ruta = ruta.with_name(f"{clave_cache(url, params)}__{sello}.json.gz")
         ruta.parent.mkdir(parents=True, exist_ok=True)
         registro = {
             "url": url,

@@ -64,19 +64,21 @@ def leer_inscritos(ruta) -> pd.DataFrame:
 def features_inscritos(conn, inscritos: pd.DataFrame, tipo: str, fecha: date) -> pd.DataFrame:
     """Features "a la fecha" de los equipos inscritos, igual que en el dataset de entrenamiento."""
     historico = cargar_resultados(conn)
-    nuevos = pd.DataFrame({
-        "equipo_id": -np.arange(1, len(inscritos) + 1),
-        "competencia_id": -1,
-        "slug": "prediccion",
-        "tipo": tipo,
-        "fecha": fecha,
-        "n_equipos": len(inscritos),
-        "pais": inscritos["pais"].to_numpy(),
-        "universidad": inscritos["universidad"].replace("", None).to_numpy(),
-        "nombre": inscritos["equipo"].to_numpy(),
-        "posicion": np.nan,
-        "pct": np.nan,
-    })
+    nuevos = pd.DataFrame(
+        {
+            "equipo_id": -np.arange(1, len(inscritos) + 1),
+            "competencia_id": -1,
+            "slug": "prediccion",
+            "tipo": tipo,
+            "fecha": fecha,
+            "n_equipos": len(inscritos),
+            "pais": inscritos["pais"].to_numpy(),
+            "universidad": inscritos["universidad"].replace("", None).to_numpy(),
+            "nombre": inscritos["equipo"].to_numpy(),
+            "posicion": np.nan,
+            "pct": np.nan,
+        }
+    )
     nuevos["uni"] = nuevos["universidad"].map(normalizar_universidad)
     nuevos["nombre_norm"] = nuevos["nombre"].map(normalizar_nombre)
     todo = pd.concat([historico, nuevos], ignore_index=True)
@@ -86,8 +88,9 @@ def features_inscritos(conn, inscritos: pd.DataFrame, tipo: str, fecha: date) ->
     out = nuevos.merge(feats, on="equipo_id").merge(elo, on="equipo_id")
     hist = cargar_historial_por_universidad(conn)
     cf = [
-        features_cf_universidad(hist, u, fecha) if isinstance(u, str) else
-        {"uni_cf_usuarios_12m": None, "uni_cf_max_rating": None, "uni_cf_top3_rating": None}
+        features_cf_universidad(hist, u, fecha)
+        if isinstance(u, str)
+        else {"uni_cf_usuarios_12m": None, "uni_cf_max_rating": None, "uni_cf_top3_rating": None}
         for u in out["uni"]
     ]
     return pd.concat([out.reset_index(drop=True), pd.DataFrame(cf)], axis=1)
@@ -120,10 +123,23 @@ def predecir(
     feats["puntaje"] = modelo.predict(x)
     feats["explicacion"] = explicar(modelo, x)
     feats["posicion_predicha"] = feats["puntaje"].rank(method="first").astype(int)
-    columnas = ["posicion_predicha", "nombre", "universidad", "pais", "puntaje", "explicacion",
-                "eq_pct_previo", "uni_media_pct_3a_nacional", "uni_cf_top3_rating"]
-    return (feats[columnas].rename(columns={"nombre": "equipo"})
-            .sort_values("posicion_predicha").reset_index(drop=True))
+    columnas = [
+        "posicion_predicha",
+        "nombre",
+        "universidad",
+        "pais",
+        "puntaje",
+        "explicacion",
+        "eq_pct_previo",
+        "uni_media_pct_3a_nacional",
+        "uni_cf_top3_rating",
+    ]
+    return (
+        feats[columnas]
+        .rename(columns={"nombre": "equipo"})
+        .sort_values("posicion_predicha")
+        .reset_index(drop=True)
+    )
 
 
 def guardar(pred: pd.DataFrame, fecha: date, nombre: str):
@@ -134,8 +150,9 @@ def guardar(pred: pd.DataFrame, fecha: date, nombre: str):
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__,
-                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     parser.add_argument("inscritos")
     parser.add_argument("--tipo", choices=["nacional", "regional"], required=True)
     parser.add_argument("--fecha", required=True, type=date.fromisoformat)
@@ -146,8 +163,11 @@ def main() -> None:
     pred = predecir(conn, leer_inscritos(args.inscritos), args.tipo, args.fecha)
     ruta = guardar(pred, args.fecha, args.nombre)
     with pd.option_context("display.max_colwidth", 70, "display.width", 200):
-        print(pred[["posicion_predicha", "equipo", "universidad", "explicacion"]].head(25)
-              .to_string(index=False))
+        print(
+            pred[["posicion_predicha", "equipo", "universidad", "explicacion"]]
+            .head(25)
+            .to_string(index=False)
+        )
     print(f"\n{len(pred)} equipos. Guardado en {ruta.relative_to(RAIZ)}")
     conn.close()
 

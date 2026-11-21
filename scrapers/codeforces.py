@@ -49,8 +49,10 @@ def validar_respuesta(resp: httpx.Response) -> None:
     raise ErrorPermanente(comentario or f"HTTP {resp.status_code}")
 
 
-def llamar(cliente: ClienteHTTP, metodo: str, **params: Any) -> Any:
-    body = cliente.get_json(f"{API}/{metodo}", params=params or None, validar=validar_respuesta)
+def llamar(cliente: ClienteHTTP, metodo: str, refrescar: bool = False, **params: Any) -> Any:
+    body = cliente.get_json(
+        f"{API}/{metodo}", params=params or None, validar=validar_respuesta, refrescar=refrescar
+    )
     return body["result"]
 
 
@@ -99,8 +101,12 @@ def guardar_candidatos(conn: sqlite3.Connection, filas: list[dict], fecha_descar
     return len(filas)
 
 
-def descargar_candidatos(cliente: ClienteHTTP, conn: sqlite3.Connection, pais: str) -> int:
-    usuarios = llamar(cliente, "user.ratedList", activeOnly="false", includeRetired="true")
+def descargar_candidatos(
+    cliente: ClienteHTTP, conn: sqlite3.Connection, pais: str, refrescar: bool = False
+) -> int:
+    usuarios = llamar(
+        cliente, "user.ratedList", refrescar=refrescar, activeOnly="false", includeRetired="true"
+    )
     log.info("user.ratedList: %d usuarios en total", len(usuarios))
     filas = filtrar_por_pais(usuarios, pais)
     return guardar_candidatos(conn, filas, _ahora())
@@ -152,8 +158,16 @@ def descargar_historiales(
     conn: sqlite3.Connection,
     reintentar_fallidos: bool = False,
     limite: int | None = None,
+    refrescar: bool = False,
 ) -> dict[str, int]:
-    estados = ("pendiente", "fallido") if reintentar_fallidos else ("pendiente",)
+    """Descarga historiales pendientes. Con `refrescar`, vuelve a pedir los de TODOS los
+    candidatos (para actualizar ratings) guardando una versión nueva en caché."""
+    if refrescar:
+        estados = ("pendiente", "ok", "fallido")
+    elif reintentar_fallidos:
+        estados = ("pendiente", "fallido")
+    else:
+        estados = ("pendiente",)
     marcas = ",".join("?" * len(estados))
     handles = [
         h
@@ -168,7 +182,7 @@ def descargar_historiales(
     conteo = {"ok": 0, "fallido": 0}
     for i, handle in enumerate(handles, 1):
         try:
-            cambios = llamar(cliente, "user.rating", handle=handle)
+            cambios = llamar(cliente, "user.rating", refrescar=refrescar, handle=handle)
         except (ErrorPermanente, ErrorTransitorio) as e:
             marcar_fallido(conn, handle, str(e))
             conteo["fallido"] += 1

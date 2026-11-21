@@ -8,8 +8,15 @@ from scrapers.scorelatam import Equipo, cargar_competencia
 
 
 def _comp(slug, tipo, año, fecha):
-    return {"slug": slug, "nombre": slug, "tipo": tipo, "año": str(año), "fecha": fecha,
-            "formato": "boca", "url_scoreboard": "u"}
+    return {
+        "slug": slug,
+        "nombre": slug,
+        "tipo": tipo,
+        "año": str(año),
+        "fecha": fecha,
+        "formato": "boca",
+        "url_scoreboard": "u",
+    }
 
 
 def _poblar(conn):
@@ -34,11 +41,13 @@ def test_leer_inscritos_pais_por_defecto(tmp_path):
 def test_predecir_usa_historial_y_no_entrena_con_el_futuro(conn):
     _poblar(conn)
     dataset = construir_dataset(conn)
-    inscritos = pd.DataFrame({
-        "equipo": ["Flojos", "Fuertes", "Medios", "Desconocido"],
-        "universidad": ["UCB", "UMSS", "UMSA", "UNIVALLE"],
-        "pais": ["BO"] * 4,
-    })
+    inscritos = pd.DataFrame(
+        {
+            "equipo": ["Flojos", "Fuertes", "Medios", "Desconocido"],
+            "universidad": ["UCB", "UMSS", "UMSA", "UNIVALLE"],
+            "pais": ["BO"] * 4,
+        }
+    )
     pred = predecir(conn, inscritos, "nacional", date(2025, 9, 1), dataset=dataset)
     orden = pred.sort_values("posicion_predicha")["equipo"].tolist()
     assert orden.index("Fuertes") < orden.index("Medios") < orden.index("Flojos")

@@ -122,6 +122,7 @@ Comandos (en orden; cada uno re-ejecutable):
 python -m scrapers.codeforces candidatos && python -m scrapers.codeforces historiales
 python -m scrapers.scorelatam descargar && python -m scrapers.scorelatam cargar
 python -m scrapers.validar_resultados
+python -m scrapers.actualizar              # refrescar ratings CF + dataset
 python -m matching.integrantes plantilla | cargar | cobertura
 python -m features.build_dataset          # data/dataset.parquet
 python -m models.evaluate                 # reports/fase6_baseline.md
@@ -239,7 +240,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 - [ ] Manejo de cold start (`sin_rating`, valores por defecto).
 - [x] Target: percentil = posición / n_equipos. *(Adelantado: `pct` y `pct_bo` en `features/build_dataset.py`; empates = posición media del bloque.)*
 - [x] Test anti-fuga: ninguna feature usa datos con fecha ≥ fecha de la competencia. *(Adelantado: para las features de universidad/equipo y de CF por universidad; repetir cuando haya features por persona.)*
-- [ ] Notebook de exploración (distribuciones, correlación rating vs posición).
+- [x] Notebook de exploración (distribuciones, correlación rating vs posición). *(Adelantado: `notebooks/exploracion.ipynb`, ejecutado y con salidas.)*
 
 **Entregable:** `data/dataset.parquet` (una fila por equipo-competencia).
 **Listo cuando:** el test anti-fuga pasa y el dataset se regenera con un solo comando.
@@ -267,7 +268,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 ### FASE 8 — Predicción de la próxima competencia y demo
 **Objetivo:** usar el sistema de verdad. *(Al 2026-11-20 la única competencia de 2026 que falta es Programadores de América `pda26`; las siguientes del alcance del MVP son el nacional y la regional de 2027.)*
 - [x] Script `predict.py` que recibe la lista de equipos inscritos (CSV: equipo, universidad, integrantes/handles) y devuelve el ranking predicho. *(Adelantado: `python -m models.predict`; por ahora ignora integrantes/handles.)*
-- [ ] Actualizar ratings justo antes de la competencia.
+- [x] Actualizar ratings justo antes de la competencia. *(Adelantado: `python -m scrapers.actualizar` refresca candidatos e historiales y regenera el dataset.)*
 - [x] Demo Streamlit (`app/`): cargar equipos, ver ranking predicho y explicación por equipo. *(Adelantado: `streamlit run app/app.py`; modos re-jugar competencia pasada y subir inscritos.)*
 - [x] Guardar la predicción con fecha para compararla después. *(Adelantado: `data/predicciones/<fecha>_<nombre>.csv`.)*
 
@@ -277,7 +278,7 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
 ### FASE 9 — Expansión (opcional, iterativa)
 - [ ] Agregar AtCoder (`history/json`) y CodeChef (scraping) como features.
 - [ ] Más países/regionales.
-- [ ] Automatizar actualización de ratings (cron / GitHub Actions).
+- [ ] Automatizar actualización de ratings (cron / GitHub Actions). *(Script listo con la línea de cron en su docstring; falta instalar el cron. GitHub Actions no sirve tal cual: la base no está en el repo.)*
 - [ ] Reentrenar con cada nueva competencia y seguir midiendo.
 
 ## 12. Limitaciones conocidas
@@ -390,4 +391,10 @@ Python · httpx/requests · BeautifulSoup · Playwright (solo si hace falta JS) 
   - `models/predict.py`: features "a la fecha" de equipos nuevos (mismas funciones que el dataset) y Ridge entrenado solo con competencias anteriores a la fecha. Re-jugar el nacional 2026 da exactamente el Spearman de la evaluación (0.482) → pipeline coherente. En ese replay acierta 2 del top 10 real en el nacional; en la regional 2026, 9/10.
   - `app/app.py` (Streamlit), verificado con `streamlit.testing.AppTest`: sin excepciones en nacional 2026, regional 2026 y regional 2019 (sin historia previa → aviso).
   - Dependencias opcionales nuevas en `pyproject.toml`: `analisis` (shap) y `app` (streamlit); `pyarrow` en las base.
+- 2026-11-21 — Fase 3 — **Adelantados de las Fases 5, 8 y 9:**
+  - `notebooks/exploracion.ipynb`: tamaño de competencias, resueltos, cobertura y correlación de features, resultado previo del equipo, universidades en el nacional y CF en Bolivia. Ejecutado sin errores (se regenera con *Run All* tras `build_dataset`).
+  - `python -m scrapers.actualizar`: refresca `user.ratedList` y los historiales de todos los candidatos y regenera el dataset (~13 min). Opciones `--sin-candidatos`, `--limite N`, `--sin-dataset`.
+  - **Caché versionado** (`scrapers/http.py`): la primera respuesta queda en `<clave>.json.gz` y cada refresco crea `<clave>__<sello>.json.gz`; se lee siempre la más reciente. Así refrescar no sobrescribe `data/raw/` (convención de la sección 13).
+  - Cron sugerido (no instalado): `0 6 * * 1  cd <repo> && .venv/bin/python -m scrapers.actualizar >> act.log 2>&1`.
+  - AtCoder/CodeChef no se agregan todavía: sin integrantes solo servirían para la fuerza de la universidad, que ya cubre CF.
 

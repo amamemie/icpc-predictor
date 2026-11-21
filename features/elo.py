@@ -45,11 +45,13 @@ def elo_a_la_fecha(df: pd.DataFrame) -> pd.DataFrame:
         for _, e in mismo_dia.iterrows():
             uni = e["uni"]
             sin_uni = not isinstance(uni, str)
-            filas.append({
-                "equipo_id": e["equipo_id"],
-                "uni_elo": None if sin_uni else elos.get(uni, ELO_INICIAL),
-                "uni_elo_partidas": None if sin_uni else partidas.get(uni, 0),
-            })
+            filas.append(
+                {
+                    "equipo_id": e["equipo_id"],
+                    "uni_elo": None if sin_uni else elos.get(uni, ELO_INICIAL),
+                    "uni_elo_partidas": None if sin_uni else partidas.get(uni, 0),
+                }
+            )
         nuevos: dict[str, float] = {}
         # Solo competencias con resultados (una predicción todavía no tiene pct).
         for _, comp in mismo_dia.dropna(subset=["uni", "pct"]).groupby("competencia_id"):

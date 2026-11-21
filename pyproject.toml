@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-analisis = ["shap>=0.45"]
+analisis = ["shap>=0.45", "matplotlib>=3.8", "jupyter>=1.0"]
 app = ["streamlit>=1.35"]
 dev = [
     "pytest>=8.0",

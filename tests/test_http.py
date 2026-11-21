@@ -68,3 +68,15 @@ def test_descargar_archivo_no_repite(tmp_path):
     c.descargar_archivo("https://ejemplo.org/p", destino)
     assert destino.read_text() == "<html>ok</html>"
     assert len(llamadas) == 1
+
+
+def test_refrescar_crea_version_nueva_sin_sobrescribir(tmp_path):
+    respuestas = iter([{"v": 1}, {"v": 2}])
+    c = _cliente(tmp_path, lambda r: httpx.Response(200, json=next(respuestas)))
+    url = "https://ejemplo.org/r"
+    assert c.get_json(url) == {"v": 1}
+    original = c.ruta_cache(url)
+    assert c.get_json(url, refrescar=True) == {"v": 2}
+    archivos = sorted(p.name for p in (tmp_path / "prueba").glob("*.json.gz"))
+    assert len(archivos) == 2 and original.exists()  # la primera respuesta sigue ahí
+    assert c.get_json(url) == {"v": 2}  # se lee la versión más reciente

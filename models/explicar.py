@@ -22,9 +22,18 @@ RUTA = RAIZ / "reports" / "fase7_shap.md"
 def shap_lgbm(train: pd.DataFrame, test: pd.DataFrame) -> pd.Series:
     train = train.sort_values("competencia_id")
     grupos = train.groupby("competencia_id", sort=True).size().to_numpy()
-    modelo = lgb.LGBMRanker(objective="lambdarank", n_estimators=200, learning_rate=0.05,
-                            num_leaves=7, min_child_samples=20, subsample=0.8, subsample_freq=1,
-                            colsample_bytree=0.8, random_state=0, verbose=-1)
+    modelo = lgb.LGBMRanker(
+        objective="lambdarank",
+        n_estimators=200,
+        learning_rate=0.05,
+        num_leaves=7,
+        min_child_samples=20,
+        subsample=0.8,
+        subsample_freq=1,
+        colsample_bytree=0.8,
+        random_state=0,
+        verbose=-1,
+    )
     modelo.fit(matriz(train), _etiquetas_relevancia(train), group=grupos)
     valores = shap.TreeExplainer(modelo).shap_values(matriz(test))
     return pd.Series(np.abs(valores).mean(axis=0), index=FEATURES)
@@ -44,10 +53,15 @@ def main() -> None:
     train, test = df[df["año"] < AÑO_TEST], df[df["año"] == AÑO_TEST]
     tabla = pd.DataFrame({"lgbm": shap_lgbm(train, test), "ridge": shap_ridge(train, test)})
     tabla = (tabla / tabla.sum()).sort_values("lgbm", ascending=False)  # fracción del total
-    lineas = ["# Fase 7 — Importancia de features (SHAP)", "",
-              f"Modelos entrenados con año < {AÑO_TEST}; |SHAP| medio sobre el test {AÑO_TEST} "
-              "(equipos bolivianos), normalizado a fracción del total por modelo.", "",
-              "| feature | LightGBM | Ridge |", "|---|---|---|"]
+    lineas = [
+        "# Fase 7 — Importancia de features (SHAP)",
+        "",
+        f"Modelos entrenados con año < {AÑO_TEST}; |SHAP| medio sobre el test {AÑO_TEST} "
+        "(equipos bolivianos), normalizado a fracción del total por modelo.",
+        "",
+        "| feature | LightGBM | Ridge |",
+        "|---|---|---|",
+    ]
     for f, r in tabla.iterrows():
         lineas.append(f"| {f} | {r['lgbm']:.1%} | {r['ridge']:.1%} |")
     RUTA.write_text("\n".join(lineas) + "\n", encoding="utf-8")
